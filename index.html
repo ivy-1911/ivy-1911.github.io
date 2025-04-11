@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Chain-Talker</title>
+		<link type="text/css" href="./css/basic.css" rel="stylesheet">
+		<link type="text/css" href="./css/index.css" rel="stylesheet">
+		<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet">
+		<script type='text/javascript' src="./js/jquery-3.3.1.min.js"></script>
+		
+	</head>
+	<body>
+		
+		<div class="main">
+			<div class="title" style="display: flex;
+									  align-items: center;
+									  justify-content: center;
+									  width: 100%;
+									  margin: 0 auto;">
+				<div><img src="img/agent.png" style="width: 5rem; height: 5rem; margin-right: 1rem;" alt="Agent Image"/></div>
+			    
+			    <div style="z-index: 2; color: white;">
+					Chain-Talker: Chain Understanding and Rendering for <br/> Empathetic Conversational Speech Synthesis
+				</div>
+			</div>
+			<div class="content">
+				<div class="section author">
+					<span>
+						Anonymous Authors
+					</span>
+				</div>
+				
+				<!-- ///////// -->
+				<div class="section toc">
+					<div class="section-title">LIST</div>
+					<div class="section-content">
+						<ul>
+							<li><a href="#abstract">1. ABSTRACT</a></li>
+							<li><a href="#method">2. METHOD</a></li>
+							<li>
+								<a href="#experiments">3. EXPERIMENTS</a>
+								<ul>
+									<li><a href="#exp-1" style="padding-left: 2rem;">3.1 Chain-Talker Evaluation</a></li>
+									<li><a href="#exp-2" style="padding-left: 2rem;">3.2 Ablation Experiment</a></li>
+									<li><a href="#exp-3" style="padding-left: 2rem;">3.3 Verifying Emotion and Style Controllability</a></li>
+									<li><a href="#exp-4" style="padding-left: 2rem;">3.4 Examples of Generating Empathetic Captions Using CSS-EmCap</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- ///////// -->
+				
+								
+				<div class="section"><a name="abstract"></a>
+					<div class="section-title">1. ABSTRACT</div>
+					<div class="section-content abstract">
+						Conversational Speech Synthesis (CSS) aims to align synthesized speech with the emotional and stylistic context of user-agent interactions to achieve empathy. Current generative CSS models face interpretability limitations due to insufficient emotional perception and redundant discrete speech coding. To address the above issues, we present <b>Chain-Talker</b>, a three-stage framework mimicking human cognition: <i>Emotion Understanding</i> derives context-aware emotion descriptors from dialogue history; <i>Semantic Understanding</i> generates compact semantic codes via serialized prediction; and <i>Empathetic Rendering</i> synthesizes expressive speech by integrating both components. To support emotion modeling, we develop <b>CSS-EmCap</b>, an LLM-driven automated pipeline for generating precise conversational speech emotion captions. Experiments on three benchmark datasets demonstrate that Chain-Talker produces more expressive and empathetic speech than existing methods, with CSS-EmCap contributing to reliable emotion modeling. The code and demos are available at: <a href="https://github.com/Chain-Talker/Chain-Talker">https://github.com/Chain-Talker/Chain-Talker</a>.
+					</div> 
+				</div>
+				
+				<div class="section"><a name="method"></a>
+					<div class="section-title">2. METHOD</div>
+					<div class="section-content method_image">
+						<img style="width: 100%;" src="img/method.jpg"/>
+					</div> 
+				</div>
+				
+				<div class="section"><a name="experiments"></a>
+					<div class="section-title"><a name="3"></a>3. EXPERIMENTS</div>
+					
+					<!-- ///////////////////// exp-1 ///////////////////// -->
+					<a name="exp-1"></a>
+					<div class="section-content">
+						<div class="subsection-title"><a name="3"></a>3.1 Chain-Talker Evaluation</div>
+					</div>
+					<div class="section-content experiments">
+						We compare Chain-Talker with seven advanced CSS models using the NCSSD-EmCap dataset. These TTS models include:
+						</br> 1) <b>Ground Truth</b>: Real recorded speech.
+						</br> 2) <b>CCATTS</b>: A context-aware CSS model, which employs a GRU-based network to model the sentence-level dependency among the dialogue context (Guo et al., 2021).
+						</br> 3) <b>M<sup>2</sup>-CTTS</b>: It extracts context-dependent information at multiple granularities—both word-level and sentence-level—from the speech and text within the dialogue context  (Xue et al., 2023).
+						</br> 4) <b>ECSS</b>: It considers different utterances in the dialogue context and modal information as individual graph nodes and uses a heterogeneous graph neural network to model the dialogue context (Liu et al., 2024a).
+						</br> 5) <b>GPT-Talker</b>: It takes the text and speech of the dialogue context as prompts and then utilizes a GPT-style autoregressive model to predict the discrete token sequence of the response speech, followed by synthesizing the final speech waveform using VITS  (Liu et al., 2024b).
+						</br> 6) <b>GPT-Talker<sub>c</sub></b>:  A variant of GPT-Talker adds empathetic captions during context modeling to help understand emotional changes in conversations.
+						</br> 7) <b>Chain-Talker<sub>s</sub></b>: A variant of Chain-Talker replaces the empathetic captions with style factor labels.
+						</br> 8) <b>Chain-Talker<sub>e</sub></b>: A variant of Chain-Talker replaces the empathetic captions with emotion labels.
+						</br> 9) <b>Chain-Talker (Our Method)</b>: The approach we propose is a three-stage framework that mimics human cognition: <i>Emotion Understanding</i> derives context-aware emotion descriptors from dialogue history; <i>Semantic Understanding</i> generates compact semantic codes via serialized prediction; and <i>Empathetic Rendering</i> synthesizes expressive speech by integrating both components.
+					</div>
+					
+					<!-- sample 1 -->
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #1:</strong></div>
+							
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) A big one would be nice. </span>
+											</br>
+											<span>2. (Spk B) How about this one? It's our biggest — sixteen' in diameter.</span>
+											</br>
+											<audio src="./audio/1/d23.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="5" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									  <tr>
+									  	<td colspan="5" style="text-align: center"><span>3. (Spk A) Oh, yes, I like that one, but it's too heavy.</span></td>
+									  </tr>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">CCATTS</td>
+										<td style="text-align: center">M<sup>2</sup>-CTTS</td>
+										<td style="text-align: center">ECSS</td>
+										<td style="text-align: center">GPT-Talker</td>
+									</tr>
+									<tr>
+										<td rowspan="3" style="text-align: left"><audio src="./audio/1/0-GT.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/1-CCATTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/2-M2CTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/3-ECSS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/4-GPT-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">GPT-Talker<sub>c</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>s</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>e</sub></td>
+										<td style="text-align: center"><b>Chain-Talker</b></td>
+									</tr>
+									
+									<tr>
+										<td style="text-align: left"><audio src="./audio/1/5-GPT-Talker-c.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/6-Chain-Talker-s.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/7-Chain-Talker-e.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/1/8-Chain-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- sample 2 -->
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #2:</strong></div>
+							
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) Can I read it when you're finished? </span>
+											</br>
+											<span>2. (Spk B) Yes. I'm in the last chapter now and it is just gripping.</span>
+											</br>
+											<audio src="./audio/2/d59.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="5" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									  <tr>
+									  	<td colspan="5" style="text-align: center"><span>3. (Spk A) Don't tell me anything about it. I want to read it for myself.</span></td>
+									  </tr>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">CCATTS</td>
+										<td style="text-align: center">M<sup>2</sup>-CTTS</td>
+										<td style="text-align: center">ECSS</td>
+										<td style="text-align: center">GPT-Talker</td>
+									</tr>
+									<tr>
+										<td rowspan="3" style="text-align: left"><audio src="./audio/2/0-GT.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/1-CCATTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/2-M2CTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/3-ECSS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/4-GPT-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">GPT-Talker<sub>c</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>s</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>e</sub></td>
+										<td style="text-align: center"><b>Chain-Talker</b></td>
+									</tr>
+									
+									<tr>
+										<td style="text-align: left"><audio src="./audio/2/5-GPT-Talker-c.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/6-Chain-Talker-s.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/7-Chain-Talker-e.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/2/8-Chain-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- sample 3 -->
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #3:</strong></div>
+							
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) Oh, no. We just did it last week. </span>
+											</br>
+											<span>2. (Spk B) Come on. What do you want to do? Washing clothes or cleaning the house?</span>
+											</br>
+											<audio src="./audio/3/d30.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="5" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									  <tr>
+									  	<td colspan="5" style="text-align: center"><span>3. (Spk A) I'd rather wash the clothes.</span></td>
+									  </tr>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">CCATTS</td>
+										<td style="text-align: center">M<sup>2</sup>-CTTS</td>
+										<td style="text-align: center">ECSS</td>
+										<td style="text-align: center">GPT-Talker</td>
+									</tr>
+									<tr>
+										<td rowspan="3" style="text-align: left"><audio src="./audio/3/0-GT.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/1-CCATTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/2-M2CTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/3-ECSS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/4-GPT-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">GPT-Talker<sub>c</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>s</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>e</sub></td>
+										<td style="text-align: center"><b>Chain-Talker</b></td>
+									</tr>
+									
+									<tr>
+										<td style="text-align: left"><audio src="./audio/3/5-GPT-Talker-c.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/6-Chain-Talker-s.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/7-Chain-Talker-e.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/3/8-Chain-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- sample 4 -->
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #4:</strong></div>
+							
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) Oh, it is not easy to learn! </span>
+											</br>
+											<span>2. (Spk B) I think you are a quick learner. </span>
+											</br>
+											<audio src="./audio/4/d126.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="5" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									  <tr>
+									  	<td colspan="5" style="text-align: center"><span>3. (Spk A) Well, I don't think I can manage with it.</span></td>
+									  </tr>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">CCATTS</td>
+										<td style="text-align: center">M<sup>2</sup>-CTTS</td>
+										<td style="text-align: center">ECSS</td>
+										<td style="text-align: center">GPT-Talker</td>
+									</tr>
+									<tr>
+										<td rowspan="3" style="text-align: left"><audio src="./audio/4/0-GT.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/1-CCATTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/2-M2CTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/3-ECSS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/4-GPT-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">GPT-Talker<sub>c</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>s</sub></td>
+										<td style="text-align: center">Chain-Talker<sub>e</sub></td>
+										<td style="text-align: center"><b>Chain-Talker</b></td>
+									</tr>
+									
+									<tr>
+										<td style="text-align: left"><audio src="./audio/4/5-GPT-Talker-c.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/6-Chain-Talker-s.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/7-Chain-Talker-e.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/4/8-Chain-Talker.wav" controls="" preload=""></audio></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+						
+					<!-- /////////////////////-exp-2-////////////////////// -->
+					<a name="exp-2"></a>
+					<div class="section-content">
+						<div class="subsection-title"><a name="2"></a>3.2 Ablation Experiment</div>
+					</div>
+					<div class="section-content experiments">
+						To verify the effectiveness of our model components, we conduct ablation experiments by removing specific modules and training methods. These models include:
+						</br> 1) <b>w/o context</b>: A Chain-Talker variant without dialog history H, it predicts caption and renders speech directly from the given target utterance.
+						</br> 2) <b>w/o captions</b>: A CosyVoice variant, similar to GPT-Talker, where the input part includes various modal information from the dialogue history in addition to the target sentence, but without empathetic captions.
+						</br> 3) <b>w/o L<sup>caption</sup></b>: Removing the loss function about emotion understanding.
+						</br> 4) <b>w/o First-Stage</b>: Training Chain-Talker directly on the NCSSD-EmCap dataset.
+					</div>
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #1:</strong></div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) Stay away from me. </span>
+											</br>
+											<span>2. (Spk B) Are you still mad about your nose? How is it? </span>
+											</br>
+											<audio src="./audio/6/d28.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="6" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td colspan="6" style="text-align: center"><span>3. (Spk A) I'm serious, Zina. Back off. I have a bottle of pepper spray in my pocket.</span></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">w/o context</td>
+										<td style="text-align: center">w/o captions</td>
+										<td style="text-align: center">w/o L<sup>caption</sup></td>
+										<td style="text-align: center">w/o First-Stage</td>
+										<td style="text-align: center"><strong>Chain-Talker</strong></td>
+										<td style="text-align: center">Ground Truth</td>
+									</tr>
+									<tr>
+										<td style="text-align: left"><audio src="./audio/6/wo-context.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/6/wo-captions.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/6/wo-L.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/6/wo-first.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/6/Chain-Talker.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/6/gt.wav" controls="" preload=""></audio></td>
+								    </tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div class="subsection-exp-2">
+							<div class="module-title"><strong>Sample #2:</strong></div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>Dialogue History</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td style="text-align: center" colspan="4">
+											<span>1. (Spk A) Hi, Jenny. You look like you are in a hurry to somewhere. Where are you going? </span>
+											</br>
+											<span>2. (Spk B) I am going to the bank. I need to cash somae checks. </span>
+											</br>
+											<audio src="./audio/7/d40.wav" class="dialogue-wav" controls="" preload=""></audio>
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="6" style="text-align: center"><strong>Current Utterance</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td colspan="6" style="text-align: center"><span>3. (Spk A) That's great. We can go to the bank together.</span></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">w/o context</td>
+										<td style="text-align: center">w/o captions</td>
+										<td style="text-align: center">w/o L<sup>caption</sup></td>
+										<td style="text-align: center">w/o First-Stage</td>
+										<td style="text-align: center"><strong>Chain-Talker</strong></td>
+										<td style="text-align: center">Ground Truth</td>
+									</tr>
+									<tr>
+										<td style="text-align: left"><audio src="./audio/7/wo-context.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/7/wo-captions.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/7/wo-L.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/7/wo-first.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/7/Chain-Talker.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/7/gt.wav" controls="" preload=""></audio></td>
+								    </tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+						
+						
+					</div>
+					
+					
+					<!-- /////////////////////-exp-3-////////////////////// -->
+					<a name="exp-3"></a>
+					<div class="section-content">
+						<div class="subsection-title"><a name="3"></a>3.3 Verifying Emotion and Style Controllability</div>
+					</div>
+					<div class="section-content experiments">
+						To assess the emotion and style control capability of Chain-Talker, we compare it against leading controllable TTS methods using both content and style prompts. These models include:
+						</br> 1) <b>PromptTTS (Guo et al. 2023)</b>: This model uses prompts with style captions and content as input to synthesize corresponding speech, with the backbone model being Fast-Speech2.
+						</br> 2) <b>Salle (Ji et al. 2024)</b>: This architecture treats style controllable TTS as a language model task, utilizing audio codec codes as an intermediate representation to replace the conventional mel-spectrogram.
+						</br> 3) <b>Ground Truth</b>: Real recorded speech.
+					</div>
+					<div class="section-content">
+						<div class="subsection-exp-1">
+							<div class="module-title"><strong>Sample #1:</strong></div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+								    <tr>
+										<th colspan="4" style="text-align: center"><strong>(Dataset: NCSSD-EmCap):</strong></th>
+								    </tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td colspan="4" style="text-align: center"><span><b>Content Prompt:</b> I'm speaking french. don't you know anything?</span></td>
+									</tr>
+									<tr>
+									  <td colspan="4" style="text-align: center"><span><b>Style Prompt:</b> The energetic male speaker's high-pitched voice injects enthusiasm into his livid measured speech.</span></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">PromptTTS</td>
+										<td style="text-align: center">Salle</td>
+										<td style="text-align: center"><strong>Chain-Talker</strong></td>
+										<td style="text-align: center">Ground Truth</td>
+									</tr>
+									<tr>
+										<td style="text-align: left"><audio src="./audio/5/1-promptTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/1-salle.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/1-Chain-Talker.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/1-gt.wav" controls="" preload=""></audio></td>
+								    </tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div class="subsection-exp-2">
+							<div class="module-title"><strong>Sample #2:</strong></div>
+							<div class="module-content">
+								<table class="table-sample">
+								  <thead>
+									<tr>
+										<th colspan="4" style="text-align: center"><strong>(Dataset: TextrolSpeech):</strong></th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td colspan="4" style="text-align: center"><span><b>Content Prompt:</b> What would they do at the end of the year?</span></td>
+									</tr>
+									<tr>
+									  <td colspan="4" style="text-align: center"><span><b>Style Prompt:</b> With his amazed tone elevated and speaking quickly, he radiates high energy.</span></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">PromptTTS</td>
+										<td style="text-align: center">Salle</td>
+										<td style="text-align: center"><strong>Chain-Talker</strong></td>
+										<td style="text-align: center">Ground Truth</td>
+									</tr>
+									<tr>
+										<td style="text-align: left"><audio src="./audio/5/2-promptTTS.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/2-salle.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/2-Chain-Talker.wav" controls="" preload=""></audio></td>
+										<td style="text-align: left"><audio src="./audio/5/2-gt.wav" controls="" preload=""></audio></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- ////////////////////exp-4////////////////////// -->
+					<a name="exp-4"></a>
+					<div class="section-content">
+						<div class="subsection-title"><a name="4"></a>3.4 Examples of Generating Empathetic Captions Using CSS-EmCap</div>
+					</div>
+					<div class="section-content">
+						<div class="subsection-exp-1" style="overflow-x: auto;">
+							<table class="table-sample-1">
+							  <thead>
+								<tr>
+									<th colspan="10" style="text-align: left; padding-left: 2rem;"><strong>(Dataset: NCSSD-EmCap):</strong></th>
+								</tr>
+							  </thead>
+							  <tbody >
+								<tr style="background-color: #EEEEEE;font-size: 16px;">
+								  <td style="text-align: center"><span><b>ID</b></span></td>
+								  <td style="text-align: center"><span><b>0_0_d30</b></span></td>
+								  <td style="text-align: center"><span><b>1_1_d30</b></span></td>
+								  <td style="text-align: center"><span><b>2_0_d30</b></span></td>
+								  <td style="text-align: center"><span><b>3_1_d30</b></span></td>
+								  <td style="text-align: center"><span><b>4_0_d30</b></span></td>
+								  <td style="text-align: center"><span><b>5_1_d30</b></span></td>
+								  <td style="text-align: center"><span><b>6_0_d30</b></span></td>
+								  <td style="text-align: center"><span><b>7_1_d30</b></span></td>
+								  <td style="text-align: center"><span><b>8_0_d30</b></span></td>
+								</tr>
+								
+								<tr style="background-color: #E1D5E7;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Dialogue Turn</b></span></td>
+								  <td style="text-align: center"><span>1</span></td>
+								  <td style="text-align: center"><span>2</span></td>
+								  <td style="text-align: center"><span>3</span></td>
+								  <td style="text-align: center"><span>4</span></td>
+								  <td style="text-align: center"><span>5</span></td>
+								  <td style="text-align: center"><span>6</span></td>
+								  <td style="text-align: center"><span>7</span></td>
+								  <td style="text-align: center"><span>8</span></td>
+								  <td style="text-align: center"><span>9</span></td>
+								</tr>
+								
+								<tr style="background-color: #E1D5E7;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Speaker</b></span></td>
+								  <td style="text-align: center"><span>🧑 (Spk-0)</span></td>
+								  <td style="text-align: center"><span>👧 (Spk-1)</span></td>
+								  <td style="text-align: center"><span>🧑 (Spk-0)</span></td>
+								  <td style="text-align: center"><span>👧 (Spk-1)</span></td>
+								  <td style="text-align: center"><span>🧑 (Spk-0)</span></td>
+								  <td style="text-align: center"><span>👧 (Spk-1)</span></td>
+								  <td style="text-align: center"><span>🧑 (Spk-0)</span></td>
+								  <td style="text-align: center"><span>👧 (Spk-1)</span></td>
+								  <td style="text-align: center"><span>🧑 (Spk-0)</span></td>
+								</tr>
+								
+								<tr style="background-color: #E1D5E7;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Speech</b></span></td>
+								  <td style="text-align: center"><audio src="./audio/8/0_0_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/1_1_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/2_0_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/3_1_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/4_0_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/5_1_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/6_0_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/7_1_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								  <td style="text-align: center"><audio src="./audio/8/8_0_d30.wav" controls="" preload="" style="min-width: 10rem;"></audio></td>
+								</tr>
+								
+								<tr style="background-color: #FFE6CC;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Text</b></span></td>
+								  <td style="text-align: center"><span>It's sunday today.</span></td>
+								  <td style="text-align: center"><span>Yes, i know.</span></td>
+								  <td style="text-align: center"><span>Umm i think we should have a house cleaning today. what's your opinion? </span></td>
+								  <td style="text-align: center"><span>Oh, no. we just did it last week. </span></td>
+								  <td style="text-align: center"><span>Come on. what do you want to do? washing clothes or cleaning the house?</span></td>
+								  <td style="text-align: center"><span>I'd rather wash the clothes.</span></td>
+								  <td style="text-align: center"><span>Ok. here is the laundry.</span></td>
+								  <td style="text-align: center"><span>Oh, mdy god! so much!</span></td>
+								  <td style="text-align: center"><span>Don't worry. i'll help you with it later.</span></td>
+								</tr>
+								
+								<tr style="background-color: #D5E8D4;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Emotion</b></span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Disgusted 😞</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								  <td style="text-align: center"><span>Surprised 😧</span></td>
+								  <td style="text-align: center"><span>Neutral</span></td>
+								</tr>
+								
+								<tr style="background-color: #FFF2CC;font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Gender</b></span></td>
+								  <td style="text-align: center"><span>Male</span></td>
+								  <td style="text-align: center"><span>Famale</span></td>
+								  <td style="text-align: center"><span>Male</span></td>
+								  <td style="text-align: center"><span>Famale</span></td>
+								  <td style="text-align: center"><span>Male</span></td>
+								  <td style="text-align: center"><span>Famale</span></td>
+								  <td style="text-align: center"><span>Male</span></td>
+								  <td style="text-align: center"><span>Famale</span></td>
+								  <td style="text-align: center"><span>Male</span></td>
+								</tr>
+								
+								<tr style="background-color: #FFF2CC; font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Pitch</b></span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>High</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>High</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>High</span></td>
+								  <td style="text-align: center"><span>High</span></td>
+								</tr>
+								
+								<tr style="background-color: #FFF2CC; font-size: 16px;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Tempo</b></span></td>
+								  <td style="text-align: center"><span>Low</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Low</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								  <td style="text-align: center"><span>Low</span></td>
+								  <td style="text-align: center"><span>Normal</span></td>
+								</tr>
+								
+								<tr style="background-color: #FFF2CC;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Energy</b></span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">High</span></td>
+								</tr>
+								
+								<tr style="background-color: #DAE8FC;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Basic Descriptions</b></span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">A male speaker said in a high-energy, low-tempo, and normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">A female speaker replied in a high-energy, normal-tempo, and high-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The male speaker suggested something in a high-energy, normal-tempo, and normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The female speaker expressed disgust in a high-energy, low-tempo, and high-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The male speaker asked a question in a high-energy, normal-tempo, and normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The female speaker responded in a high-energy, normal-tempo, and normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The male speaker said something in a high-energy, normal-tempo, and normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The female speaker exclaimed in surprise with a high-energy, low-tempo, and high-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The male speaker offered reassurance in a high-energy, normal-tempo, and high-pitched voice.</span></td>
+								</tr>
+								
+								<tr style="background-color: #F8CECC;">
+								  <td style="text-align: center"><span><b style="font-size: 14px;">Empathetic Captions</b></span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">With energetic but deliberate pacing, the male speaker's neutral statement was delivered in a normal-pitched voice.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The female speaker's bright and alert reply, also neutral in tone, was delivered with high energy and a high-pitched voice at a normal tempo.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">Energetically and thoughtfully, the male speaker offered a suggestion in a normal-pitched voice, maintaining a neutral tone and a moderate pace.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">Expressing her disgust, the female speaker's voice was high-pitched and sharp, delivered with high energy and a slower tempo.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">In a curious and proactive manner, the male speaker posed a neutral question with high energy, a normal pitch, and a moderate pace.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">With clear and decisive intonation, the female speaker's neutral response was delivered with high energy, a normal pitch, and a moderate pace.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The male speaker's practical and straight-forward statement, neutral in tone, was delivered with high energy, a normal pitch, and a moderate pace.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">The female speaker's astonished exclamation was high-pitched and quickly delivered, conveying surprise with high energy and a slower tempo.</span></td>
+								  <td style="text-align: center"><span style="font-size: 16px;">Offering warm and supportive reassurance, the male speaker spoke with high energy, a high pitch, and a moderate pace.</span></td>
+								</tr>
+								
+								
+							  </tbody>
+							</table>
+							
+							
+							
+							
+							
+						</div>
+					</div>
+					
+					
+
+				</div>
+			</div>
+		</div>
+		
+		
+	</body>
+</html>
