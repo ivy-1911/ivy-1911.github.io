@@ -90,11 +90,25 @@ cues guide a controllable TTS model for expressive speech synthesis.
 
 <h2 id="diversity">Automatic Prompt Enrichment</h2>
 
-<!--p><ruby>Text: A doctor believes this boy to be mad.</ruby></p-->
+<p><ruby>Our method enables the
+LLM to infer implicit information and intent from the input text’s
+context, dynamically adjusting the style and content of synthesized
+speech. Specifically, we use the LLM to generate Extrapolated Con-
+text surrounding sentences that encompass the topic and scenario
+of the Input Text. Then, a Coarse-grained Style Description serves
+as initial guidance, which, when combined with Extrapolated Con-
+text, helps generate Fine-grained Style Description with greater
+nuance and expressiveness. Finally, we pass the Extrapolated Con-
+text and the Input Text through the Context Compression module
+to obtain the Paragraph-level Semantic Prompt, which is combined
+with the Fine-grained Style Description to guide the TTS model to
+output expressive speech that meets expectations.</ruby></p>
 <table>
 	<thead>
 		<tr>
 			<th style="text-align: center">Text</th>
+			<th style="text-align: center">Previous Text</th>
+			<th style="text-align: center">Following Text</th>
 			<th style="text-align: center">Coarse-grained Description</th>
             <th style="text-align: center">Fine-grained Description</th>
             
@@ -104,12 +118,32 @@ cues guide a controllable TTS model for expressive speech synthesis.
         <tr>
 			<td>
             I think you’re really talented.
+			（我觉得你真的很有才华。）
+            </td>
+			<td style="font-size: xx-small;">
+			
+			In the just-concluded project report, your train of thought was exceptionally clear. || 
+			When breaking down complex issues, you also demonstrated a unique perspective. || 
+			When encountering difficult problems before, your solutions were always so ingenious. || 
+			The part you were responsible for this time was completed quite excellently. || 
+			Everyone should learn from your spirit of dedication.
+
+            </td>
+			
+			<td style="font-size: xx-small;">
+			
+			I hope you can share more work skills in the future. || 
+			I believe you can create more value in future projects. || 
+			Our team is really lucky to have a member like you. || 
+			I'm looking forward to seeing your wonderful performance next time. || 
+			Perhaps you can take the lead in some important tasks later.
+
             </td>
             <td>
 			The adult male uses a mezzo and low volume, with a sarcastic tone.
-
             </td>
-			<td>
+			<td style="font-size: xx-small;">
+			
 			In the context of privately questioning the other person, an
 			adult male expresses his opinion of the other person’s talent in
 			a sarcastic, playful emotional tone in a medium pitch, medium
@@ -120,17 +154,143 @@ cues guide a controllable TTS model for expressive speech synthesis.
 		<tr>
 			<td>
             What a nice day it is!
+			（今天的天气真好！）
+            </td>
+			<td style="font-size: xx-small;">
+			
+			Look at the sunlight, it's warm when it shines on the body. || 
+			The gentle breeze blows softly, bringing a trace of coolness. || 
+			The sky is blue and there isn't a single cloud. || 
+			The birds are singing merrily on the branches. || 
+			Such weather is really suitable for going out for a walk.
+
+            </td>
+			
+			<td style="font-size: xx-small;">
+			
+			We can find a lawn and sit down to bask in the sun. || 
+			Maybe we can see beautiful butterflies later. || 
+			I really want to enjoy such nice weather for a while longer. || 
+			How about we go for a walk by the lake and feel the shimmering waves of the lake water? || 
+			Today is really a good day to relax and unwind.
+
             </td>
             <td>
 			 Young women express their enjoyment of the beautiful
 			 weather with a cheerful high pitched voice and a fast pace.
 
             </td>
-			<td>
+			<td style="font-size: xx-small;">
 			In an outdoor environment, a young woman expresses her love
 			for the weather with a cheerful, relaxed emotional tone in a
 			high-pitched, fast and loud voice. Emphasize the word "nice"
 			and highlight the pleasant mood.
+            </td>
+		</tr>
+		
+		<tr>
+			<td>
+            You seem very busy, Am I bothering you?
+			（你似乎很忙，我没打扰你吧？）
+            </td>
+			<td style="font-size: xx-small;">
+			
+			I see that you've been working busily in front of the computer. || 
+			You've been making phone calls one after another. || 
+			I just saw you walking in a hurry with a pile of documents in your arms. || 
+			I feel that you have a heavy workload today. || 
+			If you're busy, I can wait until you're free to chat.
+
+            </td>
+			
+			<td style="font-size: xx-small;">
+			
+			Do you need me to help you with some of the work? || 
+			No matter how busy you are at work, you should also pay attention to taking a rest. || 
+			I hope you can arrange your time reasonably and don't tire yourself out too much. || 
+			If there's anything I can help with, just let me know. || 
+			After you're done with this busy period, let's have a good get-together.
+
+            </td>
+            <td>
+			 A young female with a gentle high tone and moderate speaking speed.
+
+            </td>
+			<td style="font-size: xx-small;">
+			In the context of caring about the other person's work status, a young female, 
+			with a high tone, medium speaking speed and medium volume, and a gentle and 
+			considerate emotional tone, expresses her concern. Emphasize the word "bothering" to 
+			reflect her consideration."
+            </td>
+		</tr>
+		
+		<tr>
+			<td>
+            I wish you could come to the party.
+			（真希望你能来参加派对。）
+            </td>
+			<td style="font-size: xx-small;">
+			
+			We have been preparing for this party for a long time, and the programs are extremely wonderful. || 
+			Everyone is really looking forward to spending a happy time with you. || 
+			The venue is beautifully decorated, and the atmosphere will definitely be great. || 
+			We have prepared a lot of delicious food, all of which are your favorites. || 
+			Without you, this party would be like losing its backbone.
+
+            </td>
+			
+			<td style="font-size: xx-small;">
+			
+			Then we can play games together and laugh heartily. || 
+			I believe you will leave beautiful memories if you come. || 
+			Don't hesitate anymore. Hurry up and promise me to come to the party. || 
+			I can't wait to see you at the party. || 
+			Everyone is looking forward to your arrival. You must come!
+
+            </td>
+            <td>
+			 A young female expresses with high tone and fast speaking speed.
+
+            </td>
+			<td style="font-size: xx-small;">
+			In the context of sincerely inviting a friend, a young female, with a high tone, 
+			fast speaking speed and large volume,  and an enthusiastic and expectant emotional tone,  
+			extends the invitation. Emphasize the word "wish you" to highlight the expectation.
+            </td>
+		</tr>
+		
+		<tr>
+			<td>
+			You can always find a solution!
+            (你总是能找到解决办法！)
+            </td>
+			<td style="font-size: xx-small;">
+			
+			You easily resolved such a thorny problem last time. || 
+			When everyone else was stuck, only you had a clear train of thought. || 
+			Your keen insight into problems is truly admirable. || 
+			Every time there's a difficult problem, you're the first person we think of. || 
+			Your experience and wisdom always play a crucial role.
+
+            </td>
+			
+			<td style="font-size: xx-small;">
+			
+			Keep it up, and you'll definitely be able to solve more difficult problems in the future. || 
+			With you in the team, we're never afraid of difficulties. || 
+			I hope you can share more of your problem-solving ideas. || 
+			I believe you'll create more miracles in the future. || 
+			It's definitely right to turn to you when there's a problem.
+
+            </td>
+            <td>
+			 An adult male expresses with a trusting medium tone and medium speaking speed.
+
+            </td>
+			<td style="font-size: xx-small;">
+			In the context of affirming someone's ability to handle troubles, an adult male, 
+			with a medium tone, speaking speed and volume, and a trusting and respectful emotional tone, 
+			affirms the other person. Emphasize the word "always" to strengthen the degree of trust."
             </td>
 		</tr>
 		
@@ -162,14 +322,14 @@ cues guide a controllable TTS model for expressive speech synthesis.
             PromptTTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            I want a low pitched female voice.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio42.wav""" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -177,14 +337,14 @@ cues guide a controllable TTS model for expressive speech synthesis.
             PromptTTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            This madam talks to me with a deep voice.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio40.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -192,14 +352,14 @@ cues guide a controllable TTS model for expressive speech synthesis.
             PromptTTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            Decrease the pitch of her voice for me.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio41.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		
@@ -209,14 +369,29 @@ cues guide a controllable TTS model for expressive speech synthesis.
             Salle
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            Racism has no place in any sport.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            The despair woman's voice resonated slowly, her miserable energy remaining low, pitch high.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/Salle/4_decompressed.wav""" type="audio/wav"></audio>
+            </td>
+		</tr>
+		<tr>
+			<td>
+            Salle
+            </td>
+			<td>
+            One even gave my little dog a biscuit.
+            </td>
+			<td>
+            A boy said in a desperate voice.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/Salle/5_decompressed.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -227,26 +402,11 @@ cues guide a controllable TTS model for expressive speech synthesis.
             A doctor believes this boy to be mad.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            Rapidly speaking, the despair man's deep voice resonates with a sense of normal energy.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            Salle
-            </td>
-			<td>
-            A doctor believes this boy to be mad.
-            </td>
-			<td>
-            The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/Salle/3_decompressed.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
         
@@ -256,14 +416,15 @@ cues guide a controllable TTS model for expressive speech synthesis.
             VoxInstruct
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            Oh God, save me!
+			(上帝呀，救我吧！)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            The voice is tearful, filled with intense sorrow, somewhat warm yet slightly pleading, and somewhat resolute.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0101102001-1.wav""" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -271,14 +432,15 @@ cues guide a controllable TTS model for expressive speech synthesis.
             VoxInstruct
             </td>
 			<td>
-            A doctor believes this boy to be mad.
-            </td>
+            Good if you understand, child, put away the donation book, and go wash the horse! Your eldest senior brother is coming soon, right?
+            (明白就好，孩子，收好捐册，牵马去洗吧！你大师兄就快来了？)
+			</td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            Old Lu issued instructions in a tone full of deep affection, with a slight earnest plea, calm yet with a certain expectation. He gently said "Understand", and his tone became heavier when mentioning "eldest senior brother".
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0102162005-1.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -286,14 +448,15 @@ cues guide a controllable TTS model for expressive speech synthesis.
             VoxInstruct
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+            All these make me very happy; this is true happiness. These are my memories, and this is my life!
+			(这些都让我非常高兴，这是真正的幸福。这是我的回忆，又是我的生活！)
+            </td>
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
-            </td>
+            Filled with joy and a profound sense of happiness, he expresses himself very warmly and contentedly, without hesitation stating that Lina lives with happy memories. His tone slows slightly when he describes "true".
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0201064011-0.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		
@@ -303,14 +466,15 @@ cues guide a controllable TTS model for expressive speech synthesis.
             CosyVoice
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			His bad jokes, though cliched, kept everyone laughing.
+            (他讲的冷笑话虽然老套，但仍然让大家笑个不停。)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            A female speaker with normal pitch and normal speaking rate.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style0.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -318,14 +482,15 @@ cues guide a controllable TTS model for expressive speech synthesis.
             CosyVoice
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			The beauty of life lies not in the grand moments, but in the simple, everyday wonders that we often overlook.
+            (生活的美不在于宏大的时刻，而在于那些我们经常忽视的简单而日常的奇迹。)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            A male speaker with low pitch, fast speaking rate, and angry emotion.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style2.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -333,14 +498,16 @@ cues guide a controllable TTS model for expressive speech synthesis.
             CosyVoice
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			When we leave this world, people will remember us not for the possessions we accumulated, 
+			but for the impact we had on their lives and the love we shared.
+            (当我们离开这个世界时，人们记住的不是我们积累的财物，而是我们对他们生活的影响和我们共享的爱。)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            A female speaker with normal pitch, slow speaking rate, and sad emotion.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style3.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		
@@ -350,14 +517,18 @@ cues guide a controllable TTS model for expressive speech synthesis.
             AE-TTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			I think you’re really talented.
+            (我觉得你真的很有才华。)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            In the context of privately questioning the other person, an
+			adult male expresses his opinion of the other person’s talent in
+			a sarcastic, playful emotional tone in a medium pitch, medium
+			speed, and low volume. Emphasis on the word "really."
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_1.wav""" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -365,14 +536,18 @@ cues guide a controllable TTS model for expressive speech synthesis.
             AE-TTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			What a nice day it is!
+            (今天的天气真好！)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            In an outdoor environment, a young woman expresses her love
+			for the weather with a cheerful, relaxed emotional tone in a
+			high-pitched, fast and loud voice. Emphasize the word "nice"
+			and highlight the pleasant mood.
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_2.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
@@ -380,14 +555,19 @@ cues guide a controllable TTS model for expressive speech synthesis.
             AE-TTS
             </td>
 			<td>
-            A doctor believes this boy to be mad.
+			This dish is really good.
+            (这道菜真不错。)
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+            In the context of praising the chef's craftsmanship in a restaurant, 
+			an adult male, with a medium tone, speaking speed and volume, 
+			and a happy and satisfied emotional tone, expresses his recognition of the dish. 
+			Emphasize the word "really good" to show his satisfaction.",
+        
             </td>
             
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_3.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		
@@ -399,87 +579,136 @@ cues guide a controllable TTS model for expressive speech synthesis.
 
 <h1 id="generalization">Ablation Results in different settings of AE-TTS</h1>
 
-<p><ruby>Caption Generation </ruby></p>
+
+<p><ruby>We conduct thorough ablation experiments to validate the contri-
+butions of different settings of AE-TTS. Where X represents Input
+Text, 𝐷𝑐 and 𝐷𝑓 represent Coarse-grained and Fine-grained Style
+Descriptions respectively, 𝐶𝑒𝑥𝑡 represent Extrapolated Context, 𝑇𝑆
+represent Speech Tokens. The details are as follows:</ruby></p>
+
+
+<p><ruby>The original AE-TTS </ruby></p>
 <table>
 	<thead>
 		<tr>
+			<th style="text-align: center">Setting</th>
 			<th style="text-align: center">Text</th>
-			<th style="text-align: center">Context</th>
 			<th style="text-align: center">Coarse-grained Description</th>
-            <th style="text-align: center">Fine-grained Description</th>
+            <th style="text-align: center">Audio</th>
 		</tr>
 	</thead>
 	<tbody>
         <tr>
-			<td>
-            K=1
+			<td style="text-align: center">
+            Ab.0: Full AE-TTS pipeline: The complete system with
+			all components enabled, including context extrapolation,
+			style enrichment, and context compression. Serves as the
+			upper-bound reference.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
             <td>
-            A doctor believes this boy to be mad.
+            In the context of praising the other person's high emotional intelligence, 
+			a young female, with a high tone, fast speaking speed and large volume, 
+			and a praising and admiring emotional tone, expresses her evaluation of the other person. 
+			Emphasize the phrase "always" to show the degree of her admiration.",
             </td>
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
+</tbody>
+</table>
+
+
+<p><ruby>Caption Generation </ruby></p>
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Setting</th>
+			<th style="text-align: center">Text</th>
+			<!--th style="text-align: center">Style Prompt</th-->
+            <th style="text-align: center">Audio</th>
+		</tr>
+	</thead>
+	<tbody>
+        
         <tr>
-			<td>
-            K=2
+			<td style="text-align: center">
+            Ab.1: w/o 𝐷𝑐 when generating 𝐶𝑒𝑥𝑡 : To verify whether
+			𝐷𝑐 contribute to emotional consistency and contextual 
+			construction ability in 𝐶𝑒𝑥𝑡 .
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab1_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
-			<td>
-            K=3
+			<td style="text-align: center">
+            Ab.2: w/o X when generating 𝐶𝑒𝑥𝑡 : Testing whether 
+			reasonable 𝐶𝑒𝑥𝑡 can be generated despite the lack of actual X.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab2_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
-			<td>
-            K=4
+			<td style="text-align: center">
+            Ab.3: w/o 𝐷𝑐 when generating 𝐷𝑓 : Verify that 𝐷𝑐 provide
+			basic user intent when generating 𝐷𝑓 , preventing expressive bias.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab3_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
-			<td>
-            K=5
+			<td style="text-align: center">
+            Ab.4: w/o 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : Verify whether 𝐶𝑒𝑥𝑡
+			can provide scenario support for 𝐷𝑓 to enhance naturalness
+			and context consistency.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab4_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
+		<tr>
+			<td style="text-align: center">
+            Ab.5: w/o X and 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : To measure
+			the degradation in expressiveness when 𝐷𝑓 is generated
+			solely based on 𝐷𝑐 .
+            </td>
+			<td>
+			You always know people.
+            (你总是很了解人。)
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab5_32.wav"" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
 	</tbody>
 </table>
 <p><ruby>Speech Synthesis</ruby></p>
@@ -488,81 +717,70 @@ cues guide a controllable TTS model for expressive speech synthesis.
 		<tr>
 			<th style="text-align: center">Setting</th>
 			<th style="text-align: center">Text</th>
-			<th style="text-align: center">Style Prompt</th>
+			<!--th style="text-align: center">Style Prompt</th-->
             <th style="text-align: center">Audio</th>
 		</tr>
 	</thead>
 	<tbody>
         <tr>
-			<td>
-            K=1
+			<td style="text-align: center">
+            Ab.6: replacement of 𝐷𝑓 by 𝐷𝑐 when generation 𝑇𝑆 : To
+			directly compare the performance of using 𝐷𝑐 versus 𝐷𝑓
+			during speech synthesis.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab6_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
         <tr>
-			<td>
-            K=2
+			<td style="text-align: center">
+            Ab.7: only X and 𝐷𝑐 when generation 𝑇𝑆 : To assess the
+			performance of the system in the absence of both 𝐶𝑒𝑥𝑡 and 𝐷𝑓 .
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab7_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
-			<td>
-            K=3
+			<td style="text-align: center">
+            Ab.8: w/o 𝐶𝑒𝑥𝑡 when generation 𝑇𝑆 : To test whether 
+			removing 𝐶𝑒𝑥𝑡 at the generation stage affects the 
+			expressiveness and fidelity of synthesized speech.
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+           
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab8_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
-			<td>
-            K=4
+			<td style="text-align: center">
+            Ab.9: w/o Context Compression: To evaluate the effectiveness 
+			of the Context Compression module in summarizing 𝐶𝑒𝑥𝑡 .
             </td>
 			<td>
-            The despair woman's high-pitched voice carried a slow speech.
+			You always know people.
+            (你总是很了解人。)
             </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab9_32.wav"" type="audio/wav"></audio>
             </td>
 		</tr>
-		<tr>
-			<td>
-            K=5
-            </td>
-			<td>
-            The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-            A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0/ab0_1.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
+		
 	</tbody>
 </table>
 <p><br></p>
@@ -570,7 +788,9 @@ cues guide a controllable TTS model for expressive speech synthesis.
 
 <h1 id="generalization">Analysis of Extrapolated Context Length</h1>
 
-<!--p><ruby>We show the model’s ability to generalize to unknown emotions, such as the voice of despair.</ruby></p-->
+<p><ruby>To evaluate the impact of extrapolated context length on style
+controllability, we vary the number of surrounding sentences 𝐾 ∈
+{1, 2, 3, 4, 5} during context extrapolation.</ruby></p>
 
 
 
@@ -578,71 +798,160 @@ cues guide a controllable TTS model for expressive speech synthesis.
     <thead>
         <tr>
             <th style="text-align: center">Text</th>
-            <th style="text-align: center">Context</th>
-            <th style="text-align: center">Style Prompt</th>
+            <th style="text-align: center">Context Length</th>
+            <th style="text-align: center">Fine-grained Description</th>
             <th style="text-align: center">Audio</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan="5" style="text-align: center">shuru</td>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
+            <td rowspan="5" style="text-align: center">
+
+			
+			Lang Ping couldn't help crying after the match."(赛后的郎平忍不住哭了。)
+			
+
+			</td>
+            <td style="text-align: center">
+                K=1
             </td>
-            <td>
-                A doctor believes this boy to be mad.
+            <td rowspan="5" style="text-align: center">
+               In an indoor sports venue, An adult female speaks with alto tone, medium loudness, 
+			   medium speed speech, emotional characteristics of excitement revealed.
+			   Emphasizing "crying" to show the overwhelming feelings that burst out at this moment. 
             </td>
             <td style="text-align: center">
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_1.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
+            <td style="text-align: center">
+                K=2
             </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_2.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
+            <td style="text-align: center">
+                K=3
             </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_3.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
+            <td style="text-align: center">
+                K=4
             </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_4.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
+            <td style="text-align: center">
+                K=5
             </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
+            
             <td style="text-align: center">
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_5.wav" type="audio/wav"></audio>
             </td>
         </tr>
     </tbody>
 	
+	
 	<tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+
+			
+			Seventy-six thousand five thousand seven hundred ninety-six.."(七十六万五千七百九十六。)
+			
+
+			</td>
+            <td style="text-align: center">
+                K=1
+            </td>
+            <td rowspan="5" style="text-align: center">
+               
+			   A female speaker reads out the number in a low-pitched, small-volume and rapid manner. Her tone is tinged with regret, 
+			   as if the number represents something that causes her a sense of loss or disappointment.
+            </td>
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con1_12965.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=2
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con2_12965.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=3
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con3_12965.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=4
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con4_12965.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=5
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con5_12965.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+	
+<!--
+
+Lang Ping led the Chinese women's volleyball team to victory after a tight match.
+
+In the course of the game, both teams showed superb skills and tenacious fighting spirit.
+
+The Chinese women's volleyball team played well at the crucial moment and successfully reversed the situation of the match.
+
+The atmosphere after the game was warm, and the audience cheered for the wonderful game.
+
+The Chinese women's volleyball players hugged each other to celebrate their victory, feeling the power of teamwork.
+			
+			
+			Lang Ping couldn't help crying after the match."(赛后的郎平忍不住哭了。)
+			
+			
+Lang Ping wept after the victory and was proud of her team members' efforts.
+
+Looking at the crying Lang Ping, the players came forward to comfort her and thanked her for her hard work.
+
+Reporters rushed up to interview Lang Ping and asked her about her thoughts and feelings about the match.
+
+After the match, the Chinese Women's volleyball team got on the podium and received honors and applause.
+
+This victory not only boosted the confidence of the Chinese Women's volleyball team, but also set a new benchmark for Chinese sports.
+
+-->
+	<!--tbody>
+	
+	
         <tr>
             <td rowspan="5" style="text-align: center">shuru</td>
             <td>
@@ -699,7 +1008,7 @@ cues guide a controllable TTS model for expressive speech synthesis.
                 <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_5.wav" type="audio/wav"></audio>
             </td>
         </tr>
-    </tbody>
+    </tbody-->
 </table>
 
 
