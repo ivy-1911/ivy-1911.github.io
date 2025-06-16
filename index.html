@@ -10,12 +10,7 @@
 <meta name="generator" content="Jekyll v3.9.5">
 <meta property="og:title" content="TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS">
 <meta property="og:locale" content="en_US">
-<!--link rel="canonical" href="https://sall-e.github.io/">
-<meta property="og:url" content="https://sall-e.github.io/">
-<meta property="og:site_name" content="TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS"-->
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","headline":"TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS","name":"TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS","url":"https://sall-e.github.io/"}</script>
 <!-- End Jekyll SEO tag -->
@@ -922,96 +917,329 @@ controllability, we vary the number of surrounding sentences 𝐾 ∈
         </tr>
     </tbody>
 	
-<!--
 
-Lang Ping led the Chinese women's volleyball team to victory after a tight match.
-
-In the course of the game, both teams showed superb skills and tenacious fighting spirit.
-
-The Chinese women's volleyball team played well at the crucial moment and successfully reversed the situation of the match.
-
-The atmosphere after the game was warm, and the audience cheered for the wonderful game.
-
-The Chinese women's volleyball players hugged each other to celebrate their victory, feeling the power of teamwork.
-			
-			
-			Lang Ping couldn't help crying after the match."(赛后的郎平忍不住哭了。)
-			
-			
-Lang Ping wept after the victory and was proud of her team members' efforts.
-
-Looking at the crying Lang Ping, the players came forward to comfort her and thanked her for her hard work.
-
-Reporters rushed up to interview Lang Ping and asked her about her thoughts and feelings about the match.
-
-After the match, the Chinese Women's volleyball team got on the podium and received honors and applause.
-
-This victory not only boosted the confidence of the Chinese Women's volleyball team, but also set a new benchmark for Chinese sports.
-
--->
-	<!--tbody>
-	
-	
-        <tr>
-            <td rowspan="5" style="text-align: center">shuru</td>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_1.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_2.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_3.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_4.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                The despair woman's high-pitched voice carried a slow speech.
-            </td>
-            <td>
-                A doctor believes this boy to be mad.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_5.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-    </tbody-->
 </table>
 
 
+
+<h1 id="generalization">Fairness Comparison</h1>
+
+<p><ruby> There is rigorous side-by-side comparison with other systems using identical input text and prompts.</ruby></p>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center">Text</th>
+			<th style="text-align: center">Fine-grained Description</th>
+            <th style="text-align: center">Baseline</th>
+            <th style="text-align: center">Audio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+			Boycotting Japanese goods is nothing compared to boycotting stupid people.(抵制日货真不如抵制蠢货。)
+			
+			</td>
+			
+			 <td rowspan="5" style="text-align: center">
+               In the context of a discussion about boycotting Japanese goods, 
+			   a young boy angrily expresses his opinion in a loud voice and at a fast pace. 
+			   He emphasizes the "stupid people" to enhance the emotions of anger and disdain, 
+			   indicating that he believes it is more important to boycott certain people than to boycott Japanese goods.
+            </td>
+			
+            <td style="text-align: center">
+                PromptTTS
+            </td>
+           
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+               Salle
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275 (1).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                VoxInstruct
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275 (3).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                CosyVoice
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_01.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                AE-TTS
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_11.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+	
+	
+	<tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+			The most satisfying thing is someone like you who listens so obediently!(最满意的就是你这样听话的人！)
+			
+			</td>
+			
+			 <td rowspan="5" style="text-align: center">
+               In the scenario of evaluating others' performance, 
+			   a young man expresses his satisfaction with an obedient person in an admiring way, 
+			   with a low volume and a fast speed. He emphasizes the phrase "Most satisfied" to 
+			   highlight his high recognition of the obedient person and shows his eagerness through the fast expression.
+            </td>
+			
+            <td style="text-align: center">
+                PromptTTS
+            </td>
+           
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+               Salle
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845 (1).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                VoxInstruct
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845 (3).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                CosyVoice
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_02.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                AE-TTS
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_12.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+	
+	
+	<tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+			The usually very polite Old Zhang unexpectedly refused his request.(平时十分客气的老张，竟然拒绝了他的要求。)
+			
+			</td>
+			
+			 <td rowspan="5" style="text-align: center">
+               In the context of communicating daily events, a young man calmly tells a story in a low, 
+			   hoarse voice, with a slow and reserved speed. The politeness in his voice lacks tenderness. 
+			   He emphasizes the word "unexpectedly" to show his surprise at the fact that Lao Zhang, 
+			   who is usually very polite, refused someone's request.
+            </td>
+			
+            <td style="text-align: center">
+                PromptTTS
+            </td>
+           
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-2229.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+               Salle
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison\huawei_emotion_wav3-2229 (1).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                VoxInstruct
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison\huawei_emotion_wav3-2229 (3).wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                CosyVoice
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_03.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                AE-TTS
+            </td>
+            
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_13.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+	
+
+</table>
+
+<p><ruby> In addition, we conducted an evaluation on the long audio samples.</ruby></p>
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Model</th>
+			<th style="text-align: center">Text</th>
+			<th style="text-align: center">Style Prompt</th>
+            <th style="text-align: center">Audio</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+		<!--p><ruby>AE-TTS(our)</ruby></p-->
+        <tr>
+			<td style="text-align: center">
+            AE-TTS
+            </td>
+			<td>
+			还记得小时候,我们在田野里追逐萤火虫,月光洒在稻草堆上,那些无忧无虑的日子,真是一去不复返了。
+            </td>
+			<td style="font-size: xx-small;">
+            In the scenario of recalling past times with others, a middle-aged man tells his childhood experiences in a low, 
+			steady tone, at a slow speed and with a moderate volume, with a touch of nostalgia and sentiment. 
+			He emphasizes the scenes like "Chasing fireflies in the fields" and "The moonlight shining on the straw stacks" to 
+			create a beautiful memory picture and highlight his regret that the carefree childhood days are gone forever.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_10.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+		<tr>
+			<td style="text-align: center">
+            AE-TTS
+            </td>
+			<td>
+			哇！你看这款新发布的折叠屏手机,不仅屏幕超大超清晰,还能自由变形,简直太酷太神奇了！
+            </td>
+			<td style="font-size: xx-small;">
+            When seeing the newly released foldable screen phone, a 25-year-old woman expresses 
+			her excitement and surprise in a high pitch, at a fast speed and with a large volume. 
+			She emphasizes exclamatory words like "Wow" and "so cool and amazing" to highlight 
+			her amazement at the phone's large and clear screen and its ability to transform freely, 
+			emphasizing her love and admiration for this phone.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_11.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+		<tr>
+			<td style="text-align: center">
+            AE-TTS
+            </td>
+			<td>
+			亲爱的,别再为那些琐事烦恼了,不管遇到什么困难,我都会一直陪在你身边,我们一起面对。
+            </td>
+			<td style="font-size: xx-small;">
+            In the scenario where his partner is worried about trivial matters, a young man comforts his partner 
+			in a gentle and soothing tone, at a moderate speed and with a soft volume. 
+			He emphasizes the word "dear" to convey firm companionship and support, 
+			expressing affection and comfort.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_12.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+		<tr>
+			<td style="text-align: center">
+            AE-TTS
+            </td>
+			<td>
+			真不敢相信,辛苦准备了这么久的项目,马上就要在明天的重要会议上展示了,好紧张啊！
+            </td>
+			<td style="font-size: xx-small;">
+           On the eve of a project's presentation at an important meeting, 
+		   an adult woman expresses complex emotions in a slightly high pitch, 
+		   at a slightly fast speed and with a normal volume. 
+		   She emphasizes the phrase "so nervous" to show her emphasis and dedication to the project, 
+		   as well as the mixed feelings of nervousness and anticipation for the presentation.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_13.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+		<tr>
+			<td style="text-align: center">
+            AE-TTS
+            </td>
+			<td>
+			你怎么能这样！明明说好了一起处理这个事情,现在却把烂摊子全丢给我,自己拍拍屁股走人,太不负责任了！
+            </td>
+			<td style="font-size: xx-small;">
+           In the scenario of being abandoned by a partner in a cooperative matter, 
+		   a young man expresses his anger and dissatisfaction in a sharp and fluctuating pitch, 
+		   at an extremely fast speed and with a volume almost like a roar. 
+		   He emphasizes the phrases "How could you do this", "leave it all to me" and "so irresponsible" 
+		   to highlight his strong condemnation of his partner's behavior of breaking the agreement and being irresponsible. 
+		   The tremor in his voice further reflects the depth of his anger.
+            </td>
+            
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_14.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+		
+	</tbody>
+</table>
+
+<p><br></p>
+    
 
 <p><br></p>
 
