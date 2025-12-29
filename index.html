@@ -1,103 +1,86 @@
 <!DOCTYPE html>
-<!-- saved from url=(0025)https://sall-e.github.io/ -->
+<!-- saved from url=(0042)https://github.com/ivy-1911/ivy-1911.github.io -->
 <html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    
-    
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Towards User-Friendly Expressive Speech Generation with Automatic Prompt Enrichment</title>
+<title> AutoRich-TTS </title>
 <meta name="generator" content="Jekyll v3.9.5">
-<meta property="og:title" content="TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS">
+<meta property="og:title" content="AutoRich-TTS">
 <meta property="og:locale" content="en_US">
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","headline":"TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS","name":"TEXTROLSPEECH: A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS","url":"https://sall-e.github.io/"}</script>
+<!--<meta name="description" content="This is a demo for our paper ‘AutoRich-TTS’">-->
+<!--<meta property="og:description" content="This is a demo for our paper ‘AutoRich-TTS’">-->
+<link rel="canonical" href="https://github.com/ivy-1911/ivy-1911.github.io">
+<meta property="og:url" content="https://github.com/ivy-1911/ivy-1911.github.io">
+<meta property="og:site_name" content="demo">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="AutoRich-TTS">
+<!--<script type="application/ld+json">-->
+<!--{"@context":"https://schema.org","@type":"WebSite","description":"This is a demo for our paper ‘AutoRich-TTS’","headline":"AutoRich-TTS","name":"demo","url":"https://github.com/ivy-1911/ivy-1911.github.io"}</script>-->
 <!-- End Jekyll SEO tag -->
 
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="preload" href="./CSS/css" as="style" type="text/css" crossorigin="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="./CSS/style.css">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/demo/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
   </head>
   <body>
-    <!--a id="skip-to-content" href="https://sall-e.github.io/#content">Skip to the content.</a-->
+    <a id="skip-to-content" href="https://github.com/ivy-1911/ivy-1911.github.io#content">Skip to the content.</a>
+
 
     <header class="page-header" role="banner">
       <h1 class="project-name">Towards User-Friendly Expressive Speech Generation with Automatic Prompt Enrichment</h1>
-      <h2 class="project-tagline"></h2>
-      
-      
+<!--      <h2 class="project-tagline">This is a demo for our paper</h2>-->
+<!--       <a href="https://github.com/ivy-1911/ivy-1911.github.io" class="btn">View on GitHub</a>-->
     </header>
 
-    <main id="content" class="main-content" role="main">
-      
-<h1 id="-request-for-textrolspeech"> Abstract </h1>
-<p align="justify">
 
-Recent advances in using text descriptions as prompts to guide
-speech synthesis tasks have garnered significant attention. Text-
-Prompt-Based Text-To-Speech (TTS) systems require users to pro-
-vide fine-grained style descriptions as much as possible to achieve
-optimal speech synthesis control. However, due to varying levels
-of user expressiveness, some inadequate style descriptions may
-negatively impact the quality of synthesized speech. Compared to
-fine-grained style descriptions, allowing users to provide a coarse-
-grained style description significantly lowers the usage barrier and
-enhances the overall user experience. In this paper, we propose
-Auto-Enrichment Text-To-Speech (AE-TTS), a two-stage pipeline
-that automatically converts user-provided coarse-grained style de-
-scriptions into enriched fine-grained ones. Specifically, the first
-stage infers the contextual information of the input text based
-on the coarse-grained style description, automatically extracting
-implicit emotional tendencies, scene characteristics, and thematic
-features. In the second stage, guided by the coarse-grained style
-description and the inferred contextual information, the system
-generates fine-grained style descriptions, making them more de-
-tailed and expressive. Finally, we adopt autoregressive generation
-paradigm to guide speech synthesis with given context and refined
-style descriptions as prompts.The entire process is powered by large
-language models (LLMs). Through both subjective and objective
-evaluations, we successfully demonstrate the effectiveness of our
-approach in controllable expressive speech generation tasks.
-</p><!--ul>
-<li> <a href="https://github.com/jishengpeng/TextrolSpeech">Github Link</a> </li>
-</ul-->
-<p></p>
+<main id="content" class="main-content" role="main">
 
-<h2 id="textrolspeech">Methodology</h2>
+<!-- Introduction -->
+<h1 id="name"><center> AutoRich-TTS </center></h1>
+<h2 id="abstract">Abstract</h2>
+    <p>
+    Text-prompted Text-To-Speech has emerged as a novel paradigm, which using text descriptions as speaking style prompts to guide speech synthesis.
+    However, achieving optimal control demands exhaustive fine-grained style descriptions. This necessity imposes significant burden on users, where inadequate or coarse inputs often result in degraded synthesis quality.
+    To address this, we propose AutoRich-TTS, a two-stage framework automatically enriches user simple prompts into fine-grained descriptions.
+    Specifically, the first stage extrapolates contextual information to extend implicit style cues.
+    The second stage generates richer style descriptions from coarse inputs and inferred context, enhancing both stylistic detail and expressiveness. Finally autoregressive speech language model synthesizes speech conditioned on refined prompts.
+    Both subjective and objective evaluations demonstrate that our approach effectively bridges the gap between user inputs and high-quality acoustic realization.
+    </p>
 
-<p align="justify">
-Overview of the AE-TTS architecture. Left: A two-stage LLM-driven pipeline converts coarse-grained style descriptions
-into fine-grained ones via context extrapolation and prompt enrichment. Right: The enriched descriptions and contextual 
-cues guide a controllable TTS model for expressive speech synthesis.
+<h2 id="Methodology">Methodology</h2>
+<center><img src="./Image/ICME.png" width="100%" height="100%"></center>
+<center>Overall Architecture of AutoRich-TTS</center>
+
+
+
+
+<!-- Speech Demo -->
+
+<h2 id="">Automatic Prompt Enrichment</h2>
+
+<p>
+  Our method enables the LLM to infer implicit context information and intent from the input text, dynamically adjusting the style of synthesized speech.
+  Specifically, we use the LLM to generate Extrapolated Context surrounding sentences that encompass the topic and scenario of the Input Text.
+  Then, a Coarse-grained Style Description serves as initial guidance, which combined with Extrapolated Context, helps generate Fine-grained Style Description with greater nuance and expressiveness.
+  Finally, we pass the Extrapolated Context and the Input Text through the Context Compression module to obtain the Paragraph-level Semantic Prompt, which is combined with the Fine-grained Style Description to guide the TTS model to output expressive speech that meets user expectations.
 </p>
 
-<p align="center">The figure below shows AE-TTS architecture.</p>
-<p><br>
-<img src="./img/method.png">
-<br></p>
-
-<!--p align="center">The figure below shows the distribution of emotions in TextrolSpeech.</p>
-<p><br>
-<img src="./TEXTROLSPEECH_ A TEXT STYLE CONTROL SPEECH CORPUS WITH CODEC LANGUAGE TEXT-TO-SPEECH MODELS_files/figure3.png">
-<br></p-->
-
-<h2 id="diversity">Automatic Prompt Enrichment</h2>
-
-<p><ruby>Our method enables the
-LLM to infer implicit information and intent from the input text’s
-context, dynamically adjusting the style and content of synthesized
-speech. Specifically, we use the LLM to generate Extrapolated Con-
-text surrounding sentences that encompass the topic and scenario
-of the Input Text. Then, a Coarse-grained Style Description serves
-as initial guidance, which, when combined with Extrapolated Con-
-text, helps generate Fine-grained Style Description with greater
-nuance and expressiveness. Finally, we pass the Extrapolated Con-
-text and the Input Text through the Context Compression module
-to obtain the Paragraph-level Semantic Prompt, which is combined
-with the Fine-grained Style Description to guide the TTS model to
-output expressive speech that meets expectations.</ruby></p>
 <table>
 	<thead>
 		<tr>
@@ -106,519 +89,384 @@ output expressive speech that meets expectations.</ruby></p>
 			<th style="text-align: center">Following Text</th>
 			<th style="text-align: center">Coarse-grained Description</th>
             <th style="text-align: center">Fine-grained Description</th>
-            
+
 		</tr>
 	</thead>
 	<tbody>
         <tr>
-			<td>
-            I think you’re really talented.
-			（我觉得你真的很有才华。）
-            </td>
+			<td id="1165_135220_000009_000003">
+                While sight thus failed me, sound was equally unavailing, for it was always the same--a sustained and unintermittent roar, a low, droning sound, deep and terrible, with no variations of dashing breakers or rushing rapids or falling cataracts.
 			<td style="font-size: xx-small;">
-			
-			In the just-concluded project report, your train of thought was exceptionally clear. || 
-			When breaking down complex issues, you also demonstrated a unique perspective. || 
-			When encountering difficult problems before, your solutions were always so ingenious. || 
-			The part you were responsible for this time was completed quite excellently. || 
-			Everyone should learn from your spirit of dedication.
-
+            The silence had been broken only by the endless roar of the storm. ||
+			I could feel the wind, but no sound came through the thick fog. ||
+            The world around me was still, yet the roar beneath it never ceased. ||
+            No birds sang, no leaves rustled—just the constant, deep growl. ||
+            Even the distant thunder seemed to fade into that one unchanging roar.
             </td>
-			
+
 			<td style="font-size: xx-small;">
-			
-			I hope you can share more work skills in the future. || 
-			I believe you can create more value in future projects. || 
-			Our team is really lucky to have a member like you. || 
-			I'm looking forward to seeing your wonderful performance next time. || 
-			Perhaps you can take the lead in some important tasks later.
-
+            It was as if the mountain itself was breathing in that low, endless hum. ||
+            I wondered if the earth was cracking open beneath the sound's weight. ||
+            It didn’t feel like a storm—it felt like something older, deeper. ||
+			The roar seemed to vibrate through my bones, steady and unyielding. ||
+            I couldn’t tell if it was coming from the valley or from inside my mind.
             </td>
+
             <td>
-			The adult male uses a mezzo and low volume, with a sarcastic tone.
+                A calm, upbeat adult male speaks with clear enthusiasm and focus.
             </td>
-			<td style="font-size: xx-small;">
-			
-			In the context of privately questioning the other person, an
-			adult male expresses his opinion of the other person’s talent in
-			a sarcastic, playful emotional tone in a medium pitch, medium
-			speed, and low volume. Emphasis on the word "really."
+			<td>
+			    With enthusiasm and passion, a calm adult male with normal pitch and normal volume speaks at a normal speed, conveying.
             </td>
 		</tr>
-		
+
 		<tr>
-			<td>
-            What a nice day it is!
-			（今天的天气真好！）
+			<td id="1463_134465_000029_000009">
+            	The dangerous thing about it was that it said nothing and apparently did nothing.
             </td>
 			<td style="font-size: xx-small;">
-			
-			Look at the sunlight, it's warm when it shines on the body. || 
-			The gentle breeze blows softly, bringing a trace of coolness. || 
-			The sky is blue and there isn't a single cloud. || 
-			The birds are singing merrily on the branches. || 
-			Such weather is really suitable for going out for a walk.
-
+			That's stupid—no warning, no action, just silence! ||
+            It's a trap! No signals, no response—pure danger! ||
+            Zero signs of life? That's not safe at all! ||
+            Silent and inactive? That’s the worst kind of threat! ||
+            No sound, no movement—how can that be safe?
             </td>
-			
+
 			<td style="font-size: xx-small;">
-			
-			We can find a lawn and sit down to bask in the sun. || 
-			Maybe we can see beautiful butterflies later. || 
-			I really want to enjoy such nice weather for a while longer. || 
-			How about we go for a walk by the lake and feel the shimmering waves of the lake water? || 
-			Today is really a good day to relax and unwind.
-
+			 You’d better stay away from it, it’s a dead end! ||
+             Don’t touch it—something’s always watching! ||
+             It just waits… and that’s when it strikes! ||
+             I saw it move last night—don’t trust it! ||
+             No reaction means it’s already planning something!
             </td>
+
             <td>
-			 Young women express their enjoyment of the beautiful
-			 weather with a cheerful high pitched voice and a fast pace.
+                Young teen speaks quickly and disapprovingly, emphasizing danger with sharpness.
+            </td>
 
+			<td>
+			Speaking with disgust in an audiobook, a fast-paced teenager with normal pitch and normal volume addresses the topic of danger, stating with disapproval.
             </td>
-			<td style="font-size: xx-small;">
-			In an outdoor environment, a young woman expresses her love
-			for the weather with a cheerful, relaxed emotional tone in a
-			high-pitched, fast and loud voice. Emphasize the word "nice"
-			and highlight the pleasant mood.
-            </td>
+
 		</tr>
-		
+
 		<tr>
-			<td>
-            You seem very busy, Am I bothering you?
-			（你似乎很忙，我没打扰你吧？）
+			<td id="2053_138888_000044_000000">
+           But he might probably have got over the annoyance of this feeling had he not been overwhelmed by a consciousness that everything was going badly with him.
             </td>
-			<td style="font-size: xx-small;">
-			
-			I see that you've been working busily in front of the computer. || 
-			You've been making phone calls one after another. || 
-			I just saw you walking in a hurry with a pile of documents in your arms. || 
-			I feel that you have a heavy workload today. || 
-			If you're busy, I can wait until you're free to chat.
 
-            </td>
-			
 			<td style="font-size: xx-small;">
-			
-			Do you need me to help you with some of the work? || 
-			No matter how busy you are at work, you should also pay attention to taking a rest. || 
-			I hope you can arrange your time reasonably and don't tire yourself out too much. || 
-			If there's anything I can help with, just let me know. || 
-			After you're done with this busy period, let's have a good get-together.
-
+			I bet he just ignored it, totally forgot it ever happened! ||
+            Whoa, that sounds so intense—like a storm in his head! ||
+            Man, he’s been so stressed, no wonder he’s losing it! ||
+            Honestly, he’s been spiraling—can’t believe he didn’t snap! ||
+            Totally messed up—like his mind just short-circuited!
             </td>
+
+			<td style="font-size: xx-small;">
+			Maybe he just needs a break and some fresh air!	||
+            I think he’ll feel better once he talks to someone! ||
+            Hey, what if he starts journaling to clear his head? ||
+            He’s probably just tired—give him a little time! ||
+            Let’s help him find what’s really bothering him!
+            </td>
+
             <td>
-			 A young female with a gentle high tone and moderate speaking speed.
-
+                A vibrant teenage girl speaks with energy and enthusiasm
             </td>
-			<td style="font-size: xx-small;">
-			In the context of caring about the other person's work status, a young female, 
-			with a high tone, medium speaking speed and medium volume, and a gentle and 
-			considerate emotional tone, expresses her concern. Emphasize the word "bothering" to 
-			reflect her consideration."
+
+			<td>
+			Engaging in honest conversation, a teenage female with a normal pitch and high volume speaks at a normal speed, expressing a thought-provoking idea with integrity.
             </td>
 		</tr>
-		
+
 		<tr>
-			<td>
-            I wish you could come to the party.
-			（真希望你能来参加派对。）
+			<td id="2709_158074_000036_000001">
+            	And so the hearing passed in something of a verbal riot, but with no doubt as to the fact that Congressmen were alarmed by the prospect of women voting as a protest group.
             </td>
-			<td style="font-size: xx-small;">
-			
-			We have been preparing for this party for a long time, and the programs are extremely wonderful. || 
-			Everyone is really looking forward to spending a happy time with you. || 
-			The venue is beautifully decorated, and the atmosphere will definitely be great. || 
-			We have prepared a lot of delicious food, all of which are your favorites. || 
-			Without you, this party would be like losing its backbone.
 
+            <td style="font-size: xx-small;">
+			The debate started with sharp questions and quick exchanges. ||
+            Women’s voices were finally heard, though not without tension. ||
+            A heated exchange followed, but clarity emerged from the chaos. ||
+            Opponents raised concerns, but the facts stood firm. ||
+            The floor was crowded, but the core issue remained clear.
             </td>
-			
-			<td style="font-size: xx-small;">
-			
-			Then we can play games together and laugh heartily. || 
-			I believe you will leave beautiful memories if you come. || 
-			Don't hesitate anymore. Hurry up and promise me to come to the party. || 
-			I can't wait to see you at the party. || 
-			Everyone is looking forward to your arrival. You must come!
 
+			<td style="font-size: xx-small;">
+			Many saw it as a turning point for democratic participation. ||
+            It sparked conversations that would last for years. ||
+            Women began organizing more openly in the months ahead. ||
+            The outcome inspired future movements across the nation. ||
+            Change, though slow, was beginning to take root.
             </td>
+
             <td>
-			 A young female expresses with high tone and fast speaking speed.
-
+                A youthful woman speaks calmly and clearly, balanced and neutral in tone.
             </td>
-			<td style="font-size: xx-small;">
-			In the context of sincerely inviting a friend, a young female, with a high tone, 
-			fast speaking speed and large volume,  and an enthusiastic and expectant emotional tone,  
-			extends the invitation. Emphasize the word "wish you" to highlight the expectation.
+
+            <td>
+			A natural-sounding young female with normal pitch and normal volume discusses a passing hearing.  This speech takes place in a News and Politics setting, presenting the natural emotion evident throughout.
             </td>
 		</tr>
-		
+
 		<tr>
-			<td>
-			You can always find a solution!
-            (你总是能找到解决办法！)
+			<td id="2775_160958_000029_000000">
+				So the merchant sat down as bold as you please, and made a very hearty supper, after which he again thought he would look for the master of the house.
             </td>
-			<td style="font-size: xx-small;">
-			
-			You easily resolved such a thorny problem last time. || 
-			When everyone else was stuck, only you had a clear train of thought. || 
-			Your keen insight into problems is truly admirable. || 
-			Every time there's a difficult problem, you're the first person we think of. || 
-			Your experience and wisdom always play a crucial role.
 
-            </td>
-			
 			<td style="font-size: xx-small;">
-			
-			Keep it up, and you'll definitely be able to solve more difficult problems in the future. || 
-			With you in the team, we're never afraid of difficulties. || 
-			I hope you can share more of your problem-solving ideas. || 
-			I believe you'll create more miracles in the future. || 
-			It's definitely right to turn to you when there's a problem.
-
+			Whoa, imagine that! The merchant just sat down with a grin and a full plate! ||
+            Ooh, he was so bold, like a superhero showing up at a party! ||
+            He didn’t even wait—just plopped down and started eating like a king! ||
+            Bold move! He sat down like he owned the place already! ||
+            No wait—bold as a lion, he just claimed the seat with a big smile!
             </td>
+
+			<td style="font-size: xx-small;">
+			Then he spotted the master hiding behind the curtain! ||
+            The master peeked out, eyes wide with surprise!	||
+            He whispered, 'You’re not supposed to be here!' in a hushed tone! ||
+            The merchant laughed, 'I’m just here to have fun!' and kept eating!	||
+            The house went silent—everyone watching the drama unfold!
+            </td>
+
             <td>
-			 An adult male expresses with a trusting medium tone and medium speaking speed.
-
+                Energetic, lively teenage girl telling a joyful story with excitement.
             </td>
-			<td style="font-size: xx-small;">
-			In the context of affirming someone's ability to handle troubles, an adult male, 
-			with a medium tone, speaking speed and volume, and a trusting and respectful emotional tone, 
-			affirms the other person. Emphasize the word "always" to strengthen the degree of trust."
+			<td>
+			Sharing a story, a fast-talking teenage girl with a high pitch and normal volume sits down at the table and says.
             </td>
 		</tr>
-		
-        
+
+
 	</tbody>
 </table>
+<p><br /></p>
 
-<p><br></p>
+<h2 id="compare-with-baselines">Comparison of AutoRich-TTS and Baseline TTS Systems</h2>
+<p align="justify">We provide a range of audio samples to exemplify the differences between AutoRich-TTS and the baseline models (PromptTTS、ParlerTTS、VoxInstruct、CosyVoice) over multiple style attributes (Age、 Gender、 Pitch、 Speed、 Volume、 Emotion).</p>
 
 
-
-
-<h1 id="generalization">Comparison of AE-TTS and Baseline systems </h1>
-
-<!--p><ruby>We show the model’s ability to generalize to unknown emotions, such as the voice of despair.</ruby></p-->
+<p>
+<b>Input Text:</b> It was arranged neatly, and by its side flowed the clear, cool waters of Young's Branch, a tributary of the little Manassas River. He walked briskly, crossed the brook, stepping from stone to stone, and entered the grounds of the Invincibles.<br />
+<b>Style Prompt:</b> Exuding naturalness in an aged male voice with normal pitch and high volume, a speaker speaks at a normal pace.<br />
+<b>Ground Truth:</b><audio controls="" id="8494_244443_000047_000002" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/269.wav" type="audio/mpeg" /></audio>
+</p>
 <table>
-	<thead>
-		<tr>
-			<th style="text-align: center">Model</th>
-			<th style="text-align: center">Text</th>
-			<th style="text-align: center">Style Prompt</th>
-            <th style="text-align: center">Audio</th>
-		</tr>
-	</thead>
-	<tbody>
-	<!--p><ruby>PromptTTS</ruby></p-->
-        <tr>
-			<td>
-            PromptTTS
-            </td>
-			<td>
-            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
-            </td>
-			<td>
-            I want a low pitched female voice.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio42.wav""" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            PromptTTS
-            </td>
-			<td>
-            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
-            </td>
-			<td>
-            This madam talks to me with a deep voice.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio40.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            PromptTTS
-            </td>
-			<td>
-            Jason went back sadly and told the heroes what he had heard, and they leapt onshore and searched till gone. At dawn, they found the body all rolled in dust and blood among the corpses of those monstrous beasts.
-            </td>
-			<td>
-            Decrease the pitch of her voice for me.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/PromptTTS/audio41.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<!--p><ruby>Salle</ruby></p-->
-        <tr>
-			<td>
-            Salle
-            </td>
-			<td>
-            Racism has no place in any sport.
-            </td>
-			<td>
-            The despair woman's voice resonated slowly, her miserable energy remaining low, pitch high.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Salle/4_decompressed.wav""" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            Salle
-            </td>
-			<td>
-            One even gave my little dog a biscuit.
-            </td>
-			<td>
-            A boy said in a desperate voice.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Salle/5_decompressed.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            Salle
-            </td>
-			<td>
-            A doctor believes this boy to be mad.
-            </td>
-			<td>
-            Rapidly speaking, the despair man's deep voice resonates with a sense of normal energy.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Salle/3_decompressed.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-        
-		<!--p><ruby>VoxInstruct</ruby></p-->
-        <tr>
-			<td>
-            VoxInstruct
-            </td>
-			<td>
-            Oh God, save me!
-			(上帝呀，救我吧！)
-            </td>
-			<td>
-            The voice is tearful, filled with intense sorrow, somewhat warm yet slightly pleading, and somewhat resolute.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0101102001-1.wav""" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            VoxInstruct
-            </td>
-			<td>
-            Good if you understand, child, put away the donation book, and go wash the horse! Your eldest senior brother is coming soon, right?
-            (明白就好，孩子，收好捐册，牵马去洗吧！你大师兄就快来了？)
-			</td>
-			<td>
-            Old Lu issued instructions in a tone full of deep affection, with a slight earnest plea, calm yet with a certain expectation. He gently said "Understand", and his tone became heavier when mentioning "eldest senior brother".
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0102162005-1.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            VoxInstruct
-            </td>
-			<td>
-            All these make me very happy; this is true happiness. These are my memories, and this is my life!
-			(这些都让我非常高兴，这是真正的幸福。这是我的回忆，又是我的生活！)
-            </td>
-            </td>
-			<td>
-            Filled with joy and a profound sense of happiness, he expresses himself very warmly and contentedly, without hesitation stating that Lina lives with happy memories. His tone slows slightly when he describes "true".
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/VoxInstruct/DB_para_0201064011-0.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<!--p><ruby>CosyVoice</ruby></p-->
-        <tr>
-			<td>
-            CosyVoice
-            </td>
-			<td>
-			His bad jokes, though cliched, kept everyone laughing.
-            (他讲的冷笑话虽然老套，但仍然让大家笑个不停。)
-            </td>
-			<td>
-            A female speaker with normal pitch and normal speaking rate.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style0.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            CosyVoice
-            </td>
-			<td>
-			The beauty of life lies not in the grand moments, but in the simple, everyday wonders that we often overlook.
-            (生活的美不在于宏大的时刻，而在于那些我们经常忽视的简单而日常的奇迹。)
-            </td>
-			<td>
-            A male speaker with low pitch, fast speaking rate, and angry emotion.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style2.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            CosyVoice
-            </td>
-			<td>
-			When we leave this world, people will remember us not for the possessions we accumulated, 
-			but for the impact we had on their lives and the love we shared.
-            (当我们离开这个世界时，人们记住的不是我们积累的财物，而是我们对他们生活的影响和我们共享的爱。)
-            </td>
-			<td>
-            A female speaker with normal pitch, slow speaking rate, and sad emotion.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/CosyVoice/style3.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<!--p><ruby>AE-TTS(our)</ruby></p-->
-        <tr>
-			<td>
-            AE-TTS
-            </td>
-			<td>
-			I think you’re really talented.
-            (我觉得你真的很有才华。)
-            </td>
-			<td>
-            In the context of privately questioning the other person, an
-			adult male expresses his opinion of the other person’s talent in
-			a sarcastic, playful emotional tone in a medium pitch, medium
-			speed, and low volume. Emphasis on the word "really."
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_1.wav""" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            AE-TTS
-            </td>
-			<td>
-			What a nice day it is!
-            (今天的天气真好！)
-            </td>
-			<td>
-            In an outdoor environment, a young woman expresses her love
-			for the weather with a cheerful, relaxed emotional tone in a
-			high-pitched, fast and loud voice. Emphasize the word "nice"
-			and highlight the pleasant mood.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_2.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td>
-            AE-TTS
-            </td>
-			<td>
-			This dish is really good.
-            (这道菜真不错。)
-            </td>
-			<td>
-            In the context of praising the chef's craftsmanship in a restaurant, 
-			an adult male, with a medium tone, speaking speed and volume, 
-			and a happy and satisfied emotional tone, expresses his recognition of the dish. 
-			Emphasize the word "really good" to show his satisfaction.",
-        
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/Our/ab0_3.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-	</tbody>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/269.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
 </table>
 
-<p><br></p>
+<p>
+<b>Input Text:</b> I can promise you, too, some good singing.<br />
+<b>Style Prompt:</b> With a hint of urgency in her voice, a natural adult female with a normal pitch and low volume says, in a fast-paced manner.<br />
+<b>Ground Truth:</b><audio controls="" id="7754_108640_000005_000005" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/244.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/244.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> Of course, it was commonly known that Benda was being sought by Universities and corporations: I know personally of several tempting offers he had received.<br />
+<b>Style Prompt:</b> Reflecting a sense of naturalism, a young female with high pitch and volume artfully expresses,  She speaks at a normal speed with an air of unexpected surprise.<br />
+<b>Ground Truth:</b><audio controls="" id="3994_11512_000014_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/123.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/123.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> The subject matter has been carefully chosen, and the author has wisely refrained from giving advice with regard to treatment which can be satisfactorily directed only after careful study by a physician.<br />
+<b>Style Prompt:</b> Expressing natural emotions, a youthful female with high pitch and normal volume speaks rapidly.<br />
+<b>Ground Truth:</b><audio controls="" id="1195_37134_000006_000002" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/005.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/005.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> In civil commotions of this kind occurring in any of the ancient non-Protestant countries in Europe, it is always a question of the utmost moment which side the Church and the clergy espouse.<br />
+<b>Style Prompt:</b> In a natural tone, an old male with normal pitch and loud volume speaks slowly and expresses his thoughts.<br />
+<b>Ground Truth:</b><audio controls="" id="1226_141268_000010_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/006.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/006.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> Princess Mary was silent.<br />
+<b>Style Prompt:</b> Reflecting on the silent Princess Mary, a teenage girl with low-pitched and low-volume voice spoke rapidly, expressing natural emotions.<br />
+<b>Ground Truth:</b><audio controls="" id="4592_22178_000033_000003" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/139.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/139.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> That he died in 1788, without leaving any legitimate offspring, is a fact equally well known; as also that his brother Henry Stuart, Cardinal York, who died in 1807, was the last of his ill-fated race.<br />
+<b>Style Prompt:</b> With a natural tone, a low-pitched adult male speaks in a slow and slow pace.  he says in a low-pitched voice, indicating the passing of a beloved figure.<br />
+<b>Ground Truth:</b><audio controls="" id="5319_84357_000002_000001" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/158.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/158.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> The dangerous thing about it was that it said nothing and apparently did nothing.<br />
+<b>Style Prompt:</b> Speaking with disgust in an audiobook, a fast-paced teenager with normal pitch and normal volume addresses the topic of danger, stating with disapproval.<br />
+<b>Ground Truth:</b><audio controls="" id="1463_134465_000029_000009" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/012.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/012.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+<p><br /></p>
 
 
-<h1 id="generalization">Ablation Results in different settings of AE-TTS</h1>
+<h2 id="">Ablation Results in different settings of AutoRich-TTS</h2>
+
+<p>
+  We conduct thorough ablation experiments to validate the contributions of different settings of AutoRich-TTS.
+  Where X represents Input Text, 𝐷𝑐 and 𝐷𝑓 represent Coarse-grained and Fine-grained Style Descriptions respectively,
+  𝐶𝑒𝑥𝑡 represent Extrapolated Context, 𝑇𝑆 represent Speech Tokens. The details are as follows:
+</p>
 
 
-<p><ruby>We conduct thorough ablation experiments to validate the contri-
-butions of different settings of AE-TTS. Where X represents Input
-Text, 𝐷𝑐 and 𝐷𝑓 represent Coarse-grained and Fine-grained Style
-Descriptions respectively, 𝐶𝑒𝑥𝑡 represent Extrapolated Context, 𝑇𝑆
-represent Speech Tokens. The details are as follows:</ruby></p>
-
-
-<p><ruby>The original AE-TTS </ruby></p>
+<p><ruby><strong>The original AutoRich-TTS </strong></ruby></p>
 <table>
 	<thead>
 		<tr>
 			<th style="text-align: center">Setting</th>
 			<th style="text-align: center">Text</th>
-			<th style="text-align: center">Coarse-grained Description</th>
+			<th style="text-align: center">Fine-grained Style Description</th>
             <th style="text-align: center">Audio</th>
+
 		</tr>
 	</thead>
 	<tbody>
         <tr>
 			<td style="text-align: center">
-            Ab.0: Full AE-TTS pipeline: The complete system with
+            Ab.0: Full AutoRich-TTS pipeline: The complete system with
 			all components enabled, including context extrapolation,
 			style enrichment, and context compression. Serves as the
 			upper-bound reference.
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
             </td>
             <td>
-            In the context of praising the other person's high emotional intelligence, 
-			a young female, with a high tone, fast speaking speed and large volume, 
-			and a praising and admiring emotional tone, expresses her evaluation of the other person. 
-			Emphasize the phrase "always" to show the degree of her admiration.",
+            A calm teenage girl with high pitch and normal volume, speaking at a fast pace, conveying her natural emotions.
             </td>
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab0_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108.wav" type="audio/wav"></audio>
             </td>
 		</tr>
 </tbody>
 </table>
-
-
-<p><ruby>Caption Generation </ruby></p>
+<p><ruby><strong>Style Description Inference Chain</strong></ruby></p>
 <table>
 	<thead>
 		<tr>
@@ -629,84 +477,71 @@ represent Speech Tokens. The details are as follows:</ruby></p>
 		</tr>
 	</thead>
 	<tbody>
-        
+
         <tr>
 			<td style="text-align: center">
             Ab.1: w/o 𝐷𝑐 when generating 𝐶𝑒𝑥𝑡 : To verify whether
-			𝐷𝑐 contribute to emotional consistency and contextual 
+			𝐷𝑐 contribute to emotional consistency and contextual
 			construction ability in 𝐶𝑒𝑥𝑡 .
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab1_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-1.wav" type="audio/wav"></audio>
             </td>
 		</tr>
+
 		<tr>
 			<td style="text-align: center">
-            Ab.2: w/o X when generating 𝐶𝑒𝑥𝑡 : Testing whether 
-			reasonable 𝐶𝑒𝑥𝑡 can be generated despite the lack of actual X.
-            </td>
-			<td>
-			You always know people.
-            (你总是很了解人。)
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab2_32.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		<tr>
-			<td style="text-align: center">
-            Ab.3: w/o 𝐷𝑐 when generating 𝐷𝑓 : Verify that 𝐷𝑐 provide
+            Ab.2: w/o 𝐷𝑐 when generating 𝐷𝑓 : Verify that 𝐷𝑐 provide
 			basic user intent when generating 𝐷𝑓 , preventing expressive bias.
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab3_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-2.wav" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
 			<td style="text-align: center">
-            Ab.4: w/o 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : Verify whether 𝐶𝑒𝑥𝑡
+            Ab.3: w/o 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : Verify whether 𝐶𝑒𝑥𝑡
 			can provide scenario support for 𝐷𝑓 to enhance naturalness
 			and context consistency.
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab4_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-3.wav" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
 			<td style="text-align: center">
-            Ab.5: w/o X and 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : To measure
+            Ab.4: w/o X and 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : To measure
 			the degradation in expressiveness when 𝐷𝑓 is generated
 			solely based on 𝐷𝑐 .
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab5_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-4.wav" type="audio/wav"></audio>
             </td>
 		</tr>
-		
+
 	</tbody>
 </table>
-<p><ruby>Speech Synthesis</ruby></p>
+<p><ruby><strong>Speech Synthesis with Different Input</strong></ruby></p>
 <table>
 	<thead>
 		<tr>
@@ -719,81 +554,65 @@ represent Speech Tokens. The details are as follows:</ruby></p>
 	<tbody>
         <tr>
 			<td style="text-align: center">
-            Ab.6: replacement of 𝐷𝑓 by 𝐷𝑐 when generation 𝑇𝑆 : To
+            Ab.5: replacement of 𝐷𝑓 by 𝐷𝑐 when generation 𝑇𝑆 : To
 			directly compare the performance of using 𝐷𝑐 versus 𝐷𝑓
 			during speech synthesis.
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab6_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-5.wav" type="audio/wav"></audio>
             </td>
 		</tr>
         <tr>
 			<td style="text-align: center">
-            Ab.7: only X and 𝐷𝑐 when generation 𝑇𝑆 : To assess the
+            Ab.6: only X and 𝐷𝑐 when generation 𝑇𝑆 : To assess the
 			performance of the system in the absence of both 𝐶𝑒𝑥𝑡 and 𝐷𝑓 .
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-            
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab7_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-6.wav" type="audio/wav"></audio>
             </td>
 		</tr>
 		<tr>
 			<td style="text-align: center">
-            Ab.8: w/o 𝐶𝑒𝑥𝑡 when generation 𝑇𝑆 : To test whether 
-			removing 𝐶𝑒𝑥𝑡 at the generation stage affects the 
+            Ab.7: w/o 𝐶𝑒𝑥𝑡 when generation 𝑇𝑆 : To test whether
+			removing 𝐶𝑒𝑥𝑡 at the generation stage affects the
 			expressiveness and fidelity of synthesized speech.
             </td>
 			<td>
-			You always know people.
-            (你总是很了解人。)
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
             </td>
-           
+
             <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab8_32.wav"" type="audio/wav"></audio>
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-7.wav" type="audio/wav"></audio>
             </td>
 		</tr>
-		<tr>
-			<td style="text-align: center">
-            Ab.9: w/o Context Compression: To evaluate the effectiveness 
-			of the Context Compression module in summarizing 𝐶𝑒𝑥𝑡 .
-            </td>
-			<td>
-			You always know people.
-            (你总是很了解人。)
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_AB/ab9_32.wav"" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
+
+
 	</tbody>
 </table>
-<p><br></p>
 
 
-<h1 id="generalization">Analysis of Extrapolated Context Length</h1>
-
-<p><ruby>To evaluate the impact of extrapolated context length on style
-controllability, we vary the number of surrounding sentences 𝐾 ∈
-{1, 2, 3, 4, 5} during context extrapolation.</ruby></p>
 
 
+<h2 id="">Impact of the Extrapolated Context Window Size</h2>
+
+<p>To evaluate the impact of extrapolated context window size on style controllability and expressiveness, we vary the number of surrounding sentences 𝐾 ∈ {1, 2, 3, 4, 5} during speech generation.</p>
 
 <table>
     <thead>
         <tr>
             <th style="text-align: center">Text</th>
-            <th style="text-align: center">Context Length</th>
+            <th style="text-align: center">Context Window Size</th>
             <th style="text-align: center">Fine-grained Description</th>
             <th style="text-align: center">Audio</th>
         </tr>
@@ -801,470 +620,136 @@ controllability, we vary the number of surrounding sentences 𝐾 ∈
     <tbody>
         <tr>
             <td rowspan="5" style="text-align: center">
-
-			
-			Lang Ping couldn't help crying after the match."(赛后的郎平忍不住哭了。)
-			
-
+			He couldn't but agree with me, but there was that wrathful Oriental with his face as fixed as a Buddha.
 			</td>
             <td style="text-align: center">
                 K=1
             </td>
             <td rowspan="5" style="text-align: center">
-               In an indoor sports venue, An adult female speaks with alto tone, medium loudness, 
-			   medium speed speech, emotional characteristics of excitement revealed.
-			   Emphasizing "crying" to show the overwhelming feelings that burst out at this moment. 
+               Speaking with urgency, a lively young girl with a sharp and fiery tone talks quickly. Speaking at a rapid pace, she brims with fierce energy.
+
             </td>
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_1.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-1.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
                 K=2
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_2.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-2.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
                 K=3
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_3.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-3.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
                 K=4
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_4.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-4.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
                 K=5
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con_5.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-5.wav" type="audio/wav"></audio>
             </td>
         </tr>
     </tbody>
-	
-	
-	<tbody>
-        <tr>
-            <td rowspan="5" style="text-align: center">
 
-			
-			Seventy-six thousand five thousand seven hundred ninety-six.."(七十六万五千七百九十六。)
-			
-
-			</td>
-            <td style="text-align: center">
-                K=1
-            </td>
-            <td rowspan="5" style="text-align: center">
-               
-			   A female speaker reads out the number in a low-pitched, small-volume and rapid manner. Her tone is tinged with regret, 
-			   as if the number represents something that causes her a sense of loss or disappointment.
-            </td>
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con1_12965.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                K=2
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con2_12965.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                K=3
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con3_12965.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                K=4
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con4_12965.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                K=5
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/EXP_CON/con5_12965.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-    </tbody>
-	
-
-</table>
-
-
-
-<h1 id="generalization">Fairness Comparison</h1>
-
-<p><ruby> There is rigorous side-by-side comparison with other systems using identical input text and prompts.</ruby></p>
-
-
-
-<table>
-    <thead>
-        <tr>
-            <th style="text-align: center">Text</th>
-			<th style="text-align: center">Fine-grained Description</th>
-            <th style="text-align: center">Baseline</th>
-            <th style="text-align: center">Audio</th>
-        </tr>
-    </thead>
     <tbody>
         <tr>
             <td rowspan="5" style="text-align: center">
-			Boycotting Japanese goods is nothing compared to boycotting stupid people.(抵制日货真不如抵制蠢货。)
-			
+            Why is it called by such a horrid name, Uncle?
+
 			</td>
-			
-			 <td rowspan="5" style="text-align: center">
-               In the context of a discussion about boycotting Japanese goods, 
-			   a young boy angrily expresses his opinion in a loud voice and at a fast pace. 
-			   He emphasizes the "stupid people" to enhance the emotions of anger and disdain, 
-			   indicating that he believes it is more important to boycott certain people than to boycott Japanese goods.
-            </td>
-			
             <td style="text-align: center">
-                PromptTTS
+                K=1
             </td>
-           
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-               Salle
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275 (1).wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                VoxInstruct
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav1-275 (3).wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                CosyVoice
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_01.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                AE-TTS
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_11.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-    </tbody>
-	
-	
-	<tbody>
-        <tr>
             <td rowspan="5" style="text-align: center">
-			The most satisfying thing is someone like you who listens so obediently!(最满意的就是你这样听话的人！)
-			
-			</td>
-			
-			 <td rowspan="5" style="text-align: center">
-               In the scenario of evaluating others' performance, 
-			   a young man expresses his satisfaction with an obedient person in an admiring way, 
-			   with a low volume and a fast speed. He emphasizes the phrase "Most satisfied" to 
-			   highlight his high recognition of the obedient person and shows his eagerness through the fast expression.
+
+			   Speaking with curiosity, a high-pitched youth female with normal pitch and high volume asks. Speaking at a slow pace, she displays natural emotion.
             </td>
-			
+
+
             <td style="text-align: center">
-                PromptTTS
-            </td>
-           
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-1.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-               Salle
+                K=2
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845 (1).wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                VoxInstruct
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-845 (3).wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-2.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-                CosyVoice
+                K=3
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_02.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-3.wav" type="audio/wav"></audio>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-                AE-TTS
+                K=4
             </td>
-            
+
             <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_12.wav" type="audio/wav"></audio>
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-4.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=5
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-5.wav" type="audio/wav"></audio>
             </td>
         </tr>
     </tbody>
-	
-	
-	<tbody>
-        <tr>
-            <td rowspan="5" style="text-align: center">
-			The usually very polite Old Zhang unexpectedly refused his request.(平时十分客气的老张，竟然拒绝了他的要求。)
-			
-			</td>
-			
-			 <td rowspan="5" style="text-align: center">
-               In the context of communicating daily events, a young man calmly tells a story in a low, 
-			   hoarse voice, with a slow and reserved speed. The politeness in his voice lacks tenderness. 
-			   He emphasizes the word "unexpectedly" to show his surprise at the fact that Lao Zhang, 
-			   who is usually very polite, refused someone's request.
-            </td>
-			
-            <td style="text-align: center">
-                PromptTTS
-            </td>
-           
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/huawei_emotion_wav3-2229.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-               Salle
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison\huawei_emotion_wav3-2229 (1).wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                VoxInstruct
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison\huawei_emotion_wav3-2229 (3).wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                CosyVoice
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_03.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                AE-TTS
-            </td>
-            
-            <td style="text-align: center">
-                <audio controls="" style="width: 200px;"><source src="./audio/Fairness Comparison/fair_13.wav" type="audio/wav"></audio>
-            </td>
-        </tr>
-    </tbody>
-	
+
+
+
 
 </table>
 
-<p><ruby> In addition, we conducted an evaluation on the long audio samples.</ruby></p>
-<table>
-	<thead>
-		<tr>
-			<th style="text-align: center">Model</th>
-			<th style="text-align: center">Text</th>
-			<th style="text-align: center">Style Prompt</th>
-            <th style="text-align: center">Audio</th>
-		</tr>
-	</thead>
-	<tbody>
-	
-		<!--p><ruby>AE-TTS(our)</ruby></p-->
-        <tr>
-			<td style="text-align: center">
-            AE-TTS
-            </td>
-			<td>
-			还记得小时候,我们在田野里追逐萤火虫,月光洒在稻草堆上,那些无忧无虑的日子,真是一去不复返了。
-            </td>
-			<td style="font-size: xx-small;">
-            In the scenario of recalling past times with others, a middle-aged man tells his childhood experiences in a low, 
-			steady tone, at a slow speed and with a moderate volume, with a touch of nostalgia and sentiment. 
-			He emphasizes the scenes like "Chasing fireflies in the fields" and "The moonlight shining on the straw stacks" to 
-			create a beautiful memory picture and highlight his regret that the carefree childhood days are gone forever.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_10.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<tr>
-			<td style="text-align: center">
-            AE-TTS
-            </td>
-			<td>
-			哇！你看这款新发布的折叠屏手机,不仅屏幕超大超清晰,还能自由变形,简直太酷太神奇了！
-            </td>
-			<td style="font-size: xx-small;">
-            When seeing the newly released foldable screen phone, a 25-year-old woman expresses 
-			her excitement and surprise in a high pitch, at a fast speed and with a large volume. 
-			She emphasizes exclamatory words like "Wow" and "so cool and amazing" to highlight 
-			her amazement at the phone's large and clear screen and its ability to transform freely, 
-			emphasizing her love and admiration for this phone.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_11.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<tr>
-			<td style="text-align: center">
-            AE-TTS
-            </td>
-			<td>
-			亲爱的,别再为那些琐事烦恼了,不管遇到什么困难,我都会一直陪在你身边,我们一起面对。
-            </td>
-			<td style="font-size: xx-small;">
-            In the scenario where his partner is worried about trivial matters, a young man comforts his partner 
-			in a gentle and soothing tone, at a moderate speed and with a soft volume. 
-			He emphasizes the word "dear" to convey firm companionship and support, 
-			expressing affection and comfort.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_12.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<tr>
-			<td style="text-align: center">
-            AE-TTS
-            </td>
-			<td>
-			真不敢相信,辛苦准备了这么久的项目,马上就要在明天的重要会议上展示了,好紧张啊！
-            </td>
-			<td style="font-size: xx-small;">
-           On the eve of a project's presentation at an important meeting, 
-		   an adult woman expresses complex emotions in a slightly high pitch, 
-		   at a slightly fast speed and with a normal volume. 
-		   She emphasizes the phrase "so nervous" to show her emphasis and dedication to the project, 
-		   as well as the mixed feelings of nervousness and anticipation for the presentation.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_13.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		<tr>
-			<td style="text-align: center">
-            AE-TTS
-            </td>
-			<td>
-			你怎么能这样！明明说好了一起处理这个事情,现在却把烂摊子全丢给我,自己拍拍屁股走人,太不负责任了！
-            </td>
-			<td style="font-size: xx-small;">
-           In the scenario of being abandoned by a partner in a cooperative matter, 
-		   a young man expresses his anger and dissatisfaction in a sharp and fluctuating pitch, 
-		   at an extremely fast speed and with a volume almost like a roar. 
-		   He emphasizes the phrases "How could you do this", "leave it all to me" and "so irresponsible" 
-		   to highlight his strong condemnation of his partner's behavior of breaking the agreement and being irresponsible. 
-		   The tremor in his voice further reflects the depth of his anger.
-            </td>
-            
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./audio/EXP_long/fair_14.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
-		
-		
-	</tbody>
-</table>
 
-<p><br></p>
-    
+<h2 id="references">References</h2>
 
-<p><br></p>
+    <p>[1] <a>https://speechresearch.github.io/prompttts</a></p>
+    <p>[2] <a>https://www.text-description-to-speech.com/</a></p>
+    <p>[3] <a>https://voxinstruct.github.io/VoxInstruct/</a></p>
+    <p>[4] <a>https://funaudiollm.github.io/cosyvoice2/</a></p>
 
 
-<style>
-.main-content table {
-    display: inline-table;
-}
-table {
-    table-layout:fixed;
-    width: 100%;
-    overflow: hidden;
-}
-#player{
-    width: 100%;
-}
-</style>
-
-
-
+    <!-- End of Speech Demo -->
       <footer class="site-footer">
-        
-        <!-- ><span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span><!-->
-      </footer>
-    </main>
-  
 
-</body></html>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+
+
+    </main>
+</body>
+
+</html>

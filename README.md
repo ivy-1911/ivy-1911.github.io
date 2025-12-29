@@ -1,7 +1,6 @@
-### AE-TTS 👋
+## AutoRich-TTS 
 
 
 
-## Demo Page
+### Demo Page
 [Speech Demo](https://ivy-1911.github.io/)
-
