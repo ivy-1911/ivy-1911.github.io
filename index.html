@@ -294,7 +294,7 @@
 
 <p>
 <b>Input Text:</b> Of course, it was commonly known that Benda was being sought by Universities and corporations: I know personally of several tempting offers he had received.<br />
-<b>Style Prompt:</b> Reflecting a sense of naturalism, a young female with high pitch and volume artfully expresses,  She speaks at a normal speed with an air of unexpected surprise.<br />
+<b>Style Prompt:</b> Reflecting a sense of envy, a young female with high pitch and volume artfully expresses,  She speaks at a normal speed with an air of unexpected surprise.<br />
 <b>Ground Truth:</b><audio controls="" id="3994_11512_000014_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/123.wav" type="audio/mpeg" /></audio>
 </p>
 <table>
@@ -338,7 +338,7 @@
 
 <p>
 <b>Input Text:</b> In civil commotions of this kind occurring in any of the ancient non-Protestant countries in Europe, it is always a question of the utmost moment which side the Church and the clergy espouse.<br />
-<b>Style Prompt:</b> In a natural tone, an old male with normal pitch and loud volume speaks slowly and expresses his thoughts.<br />
+<b>Style Prompt:</b> In a serious tone, an old male with normal pitch and loud volume speaks slowly and expresses his thoughts.<br />
 <b>Ground Truth:</b><audio controls="" id="1226_141268_000010_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/006.wav" type="audio/mpeg" /></audio>
 </p>
 <table>
@@ -360,7 +360,7 @@
 
 <p>
 <b>Input Text:</b> Princess Mary was silent.<br />
-<b>Style Prompt:</b> Reflecting on the silent Princess Mary, a teenage girl with low-pitched and low-volume voice spoke rapidly, expressing natural emotions.<br />
+<b>Style Prompt:</b> Reflecting on the silent Princess Mary, a teenage girl with low-pitched and low-volume voice spoke rapidly, expressing cautious emotions.<br />
 <b>Ground Truth:</b><audio controls="" id="4592_22178_000033_000003" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/139.wav" type="audio/mpeg" /></audio>
 </p>
 <table>
@@ -382,7 +382,7 @@
 
 <p>
 <b>Input Text:</b> That he died in 1788, without leaving any legitimate offspring, is a fact equally well known; as also that his brother Henry Stuart, Cardinal York, who died in 1807, was the last of his ill-fated race.<br />
-<b>Style Prompt:</b> With a natural tone, a low-pitched adult male speaks in a slow and slow pace.  he says in a low-pitched voice, indicating the passing of a beloved figure.<br />
+<b>Style Prompt:</b> With a sad tone, a low-pitched adult male speaks in a slow and slow pace.  he says in a low-pitched voice, indicating the passing of a beloved figure.<br />
 <b>Ground Truth:</b><audio controls="" id="5319_84357_000002_000001" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/158.wav" type="audio/mpeg" /></audio>
 </p>
 <table>
@@ -449,10 +449,8 @@
 	<tbody>
         <tr>
 			<td style="text-align: center">
-            Ab.0: Full AutoRich-TTS pipeline: The complete system with
-			all components enabled, including context extrapolation,
-			style enrichment, and context compression. Serves as the
-			upper-bound reference.
+            <strong>Ab.0: Full AutoRich-TTS<strong>
+            <br># The complete system with all components enabled, including context extrapolation, style description enrichment. Serves as the topline reference.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -480,9 +478,8 @@
 
         <tr>
 			<td style="text-align: center">
-            Ab.1: w/o 𝐷𝑐 when generating 𝐶𝑒𝑥𝑡 : To verify whether
-			𝐷𝑐 contribute to emotional consistency and contextual
-			construction ability in 𝐶𝑒𝑥𝑡 .
+            <strong> Ab.1: Qwen<sub>ext</sub> -w/o Dc </strong>
+            <br># without 𝐷𝑐 when  Qwen<sub>ext</sub> generates 𝐶𝑒𝑥𝑡.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -496,8 +493,8 @@
 
 		<tr>
 			<td style="text-align: center">
-            Ab.2: w/o 𝐷𝑐 when generating 𝐷𝑓 : Verify that 𝐷𝑐 provide
-			basic user intent when generating 𝐷𝑓 , preventing expressive bias.
+            <strong> Ab.2: Qwen<sub>enr</sub> -w/o Cext </strong>
+            <br># without 𝐶𝑒𝑥𝑡 when Qwen<sub>enr</sub> generates 𝐷𝑓.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -510,9 +507,8 @@
 		</tr>
 		<tr>
 			<td style="text-align: center">
-            Ab.3: w/o 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : Verify whether 𝐶𝑒𝑥𝑡
-			can provide scenario support for 𝐷𝑓 to enhance naturalness
-			and context consistency.
+            <strong> Ab.3: Qwen<sub>ext</sub> -w/o Dc & Qwen<sub>enr</sub> -w/o Cext </strong>
+            <br># Qwen<sub>ext</sub> directly generates 𝐶𝑒𝑥𝑡, then Qwen<sub>ext</sub> directly generates 𝐷𝑓.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -523,21 +519,7 @@
             <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-3.wav" type="audio/wav"></audio>
             </td>
 		</tr>
-		<tr>
-			<td style="text-align: center">
-            Ab.4: w/o X and 𝐶𝑒𝑥𝑡 when generating 𝐷𝑓 : To measure
-			the degradation in expressiveness when 𝐷𝑓 is generated
-			solely based on 𝐷𝑐 .
-            </td>
-			<td>
-			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
-
-            </td>
-
-            <td style="text-align: center">
-            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-4.wav" type="audio/wav"></audio>
-            </td>
-		</tr>
+		
 
 	</tbody>
 </table>
@@ -554,9 +536,8 @@
 	<tbody>
         <tr>
 			<td style="text-align: center">
-            Ab.5: replacement of 𝐷𝑓 by 𝐷𝑐 when generation 𝑇𝑆 : To
-			directly compare the performance of using 𝐷𝑐 versus 𝐷𝑓
-			during speech synthesis.
+            <strong> Ab.4: AutoRich-TTS<sub>Dc</sub> </strong>
+            <br># replacement of 𝐷𝑓 by 𝐷𝑐 when AutoRich-TTS generates 𝑇𝑆.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -569,8 +550,8 @@
 		</tr>
         <tr>
 			<td style="text-align: center">
-            Ab.6: only X and 𝐷𝑐 when generation 𝑇𝑆 : To assess the
-			performance of the system in the absence of both 𝐶𝑒𝑥𝑡 and 𝐷𝑓 .
+            <strong> Ab.5: AutoRich-TTS<sub>Dc</sub> -w/o Cext </strong>
+            <br># only X and 𝐷𝑐 when AutoRich-TTS generates 𝑇𝑆.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
@@ -583,9 +564,8 @@
 		</tr>
 		<tr>
 			<td style="text-align: center">
-            Ab.7: w/o 𝐶𝑒𝑥𝑡 when generation 𝑇𝑆 : To test whether
-			removing 𝐶𝑒𝑥𝑡 at the generation stage affects the
-			expressiveness and fidelity of synthesized speech.
+            <strong> Ab.6: AutoRich-TTS<sub>Df</sub> -w/o Cext </strong>
+            <br># without 𝐶𝑒𝑥𝑡 when AutoRich-TTS generates 𝑇𝑆.
             </td>
 			<td>
 			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
