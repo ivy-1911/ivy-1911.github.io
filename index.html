@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://github.com/ivy-1911/ivy-1911.github.io -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title> AutoRich-TTS </title>
+<meta name="generator" content="Jekyll v3.9.5">
+<meta property="og:title" content="AutoRich-TTS">
+<meta property="og:locale" content="en_US">
+<!--<meta name="description" content="This is a demo for our paper ‘AutoRich-TTS’">-->
+<!--<meta property="og:description" content="This is a demo for our paper ‘AutoRich-TTS’">-->
+<link rel="canonical" href="https://github.com/ivy-1911/ivy-1911.github.io">
+<meta property="og:url" content="https://github.com/ivy-1911/ivy-1911.github.io">
+<meta property="og:site_name" content="demo">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="AutoRich-TTS">
+<!--<script type="application/ld+json">-->
+<!--{"@context":"https://schema.org","@type":"WebSite","description":"This is a demo for our paper ‘AutoRich-TTS’","headline":"AutoRich-TTS","name":"demo","url":"https://github.com/ivy-1911/ivy-1911.github.io"}</script>-->
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="preload" href="./CSS/css" as="style" type="text/css" crossorigin="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/demo/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="https://github.com/ivy-1911/ivy-1911.github.io#content">Skip to the content.</a>
+
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Coarse-to-Fine Prompt Enrichment for User-Friendly Controllable Speech Generation</h1>
+<!--      <h2 class="project-tagline">This is a demo for our paper</h2>-->
+<!--       <a href="https://github.com/ivy-1911/ivy-1911.github.io" class="btn">View on GitHub</a>-->
+    </header>
+
+
+<main id="content" class="main-content" role="main">
+
+<!-- Introduction -->
+<h1 id="name"><center> AutoRich-TTS </center></h1>
+<h2 id="abstract">Abstract</h2>
+    <p>
+        Text-prompted text-to-speech (TTS) has emerged as a novel paradigm for style-controllable speech synthesis, 
+        where textual descriptions serve as style prompts to govern the acoustic attributes of generated speech. 
+        However, attaining precise and high-quality stylistic control typically requires users to provide exhaustive 
+        fine-grained style descriptions, which incurs considerable cognitive burden. In practice, insufficient or 
+        coarse-grained inputs often result in degraded synthesis quality with weak stylistic expressiveness. 
+        To address this challenge, we propose AutoRich-TTS, a two-stage framework dedicated to automatically 
+        enriching simple user prompts into informative fine-grained style descriptions. Specifically, the first stage 
+        conducts context-driven implicit style cue extrapolation. The second stage generates enriched, fine-grained 
+        style descriptions based on the coarse input and the inferred contextual style cues, enhancing both the 
+        stylistic detail and expressive capacity of the prompts. Finally, an autoregressive speech language model (SLM) 
+        performs speech synthesis conditioned on both context and refined style prompts. Extensive subjective and 
+        objective evaluations verify that our approach effectively bridges the gap between vulgar user inputs and 
+        high-quality acoustic generation, achieving superior stylistic controllability while reducing user interaction costs.
+    </p>
+
+<h2 id="Methodology">Methodology</h2>
+<center><img src="./Image/model.png" width="100%" height="100%"></center>
+<center>Overall Architecture of AutoRich-TTS</center>
+
+
+
+
+<!-- Speech Demo -->
+
+<h2 id="">Automatic Prompt Enrichment</h2>
+
+<p>
+  Our method enables the LLM to infer implicit context information and intent from the input text, dynamically adjusting the style of synthesized speech.
+  Specifically, we use the LLM to generate Extrapolated Context surrounding sentences that encompass the topic and scenario of the Input Text.
+  Then, a Coarse-grained Style Description serves as initial guidance, which combined with Extrapolated Context, helps generate Fine-grained Style Description with greater nuance and expressiveness.
+  Finally, we pass the Extrapolated Context and the Input Text through the Context Compression module to obtain the Paragraph-level Semantic Prompt, which is combined with the Fine-grained Style Description to guide the TTS model to output expressive speech that meets user expectations.
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Text</th>
+			<th style="text-align: center">Previous Text</th>
+			<th style="text-align: center">Following Text</th>
+			<th style="text-align: center">Coarse-grained Description</th>
+            <th style="text-align: center">Fine-grained Description</th>
+
+		</tr>
+	</thead>
+	<tbody>
+        <tr>
+			<td id="1165_135220_000009_000003">
+                While sight thus failed me, sound was equally unavailing, for it was always the same--a sustained and unintermittent roar, a low, droning sound, deep and terrible, with no variations of dashing breakers or rushing rapids or falling cataracts.
+			<td style="font-size: xx-small;">
+            The silence had been broken only by the endless roar of the storm. ||
+			I could feel the wind, but no sound came through the thick fog. ||
+            The world around me was still, yet the roar beneath it never ceased. ||
+            No birds sang, no leaves rustled—just the constant, deep growl. ||
+            Even the distant thunder seemed to fade into that one unchanging roar.
+            </td>
+
+			<td style="font-size: xx-small;">
+            It was as if the mountain itself was breathing in that low, endless hum. ||
+            I wondered if the earth was cracking open beneath the sound's weight. ||
+            It didn’t feel like a storm—it felt like something older, deeper. ||
+			The roar seemed to vibrate through my bones, steady and unyielding. ||
+            I couldn’t tell if it was coming from the valley or from inside my mind.
+            </td>
+
+            <td>
+                A calm, upbeat adult male speaks with clear enthusiasm and focus.
+            </td>
+			<td>
+			    With enthusiasm and passion, a calm adult male with normal pitch and normal volume speaks at a normal speed, conveying.
+            </td>
+		</tr>
+
+		<tr>
+			<td id="1463_134465_000029_000009">
+            	The dangerous thing about it was that it said nothing and apparently did nothing.
+            </td>
+			<td style="font-size: xx-small;">
+			That's stupid—no warning, no action, just silence! ||
+            It's a trap! No signals, no response—pure danger! ||
+            Zero signs of life? That's not safe at all! ||
+            Silent and inactive? That’s the worst kind of threat! ||
+            No sound, no movement—how can that be safe?
+            </td>
+
+			<td style="font-size: xx-small;">
+			 You’d better stay away from it, it’s a dead end! ||
+             Don’t touch it—something’s always watching! ||
+             It just waits… and that’s when it strikes! ||
+             I saw it move last night—don’t trust it! ||
+             No reaction means it’s already planning something!
+            </td>
+
+            <td>
+                Young teen speaks quickly and disapprovingly, emphasizing danger with sharpness.
+            </td>
+
+			<td>
+			Speaking with disgust in an audiobook, a fast-paced teenager with normal pitch and normal volume addresses the topic of danger, stating with disapproval.
+            </td>
+
+		</tr>
+
+		<tr>
+			<td id="2053_138888_000044_000000">
+           But he might probably have got over the annoyance of this feeling had he not been overwhelmed by a consciousness that everything was going badly with him.
+            </td>
+
+			<td style="font-size: xx-small;">
+			I bet he just ignored it, totally forgot it ever happened! ||
+            Whoa, that sounds so intense—like a storm in his head! ||
+            Man, he’s been so stressed, no wonder he’s losing it! ||
+            Honestly, he’s been spiraling—can’t believe he didn’t snap! ||
+            Totally messed up—like his mind just short-circuited!
+            </td>
+
+			<td style="font-size: xx-small;">
+			Maybe he just needs a break and some fresh air!	||
+            I think he’ll feel better once he talks to someone! ||
+            Hey, what if he starts journaling to clear his head? ||
+            He’s probably just tired—give him a little time! ||
+            Let’s help him find what’s really bothering him!
+            </td>
+
+            <td>
+                A vibrant teenage girl speaks with energy and enthusiasm
+            </td>
+
+			<td>
+			Engaging in honest conversation, a teenage female with a normal pitch and high volume speaks at a normal speed, expressing a thought-provoking idea with integrity.
+            </td>
+		</tr>
+
+		<tr>
+			<td id="2709_158074_000036_000001">
+            	And so the hearing passed in something of a verbal riot, but with no doubt as to the fact that Congressmen were alarmed by the prospect of women voting as a protest group.
+            </td>
+
+            <td style="font-size: xx-small;">
+			The debate started with sharp questions and quick exchanges. ||
+            Women’s voices were finally heard, though not without tension. ||
+            A heated exchange followed, but clarity emerged from the chaos. ||
+            Opponents raised concerns, but the facts stood firm. ||
+            The floor was crowded, but the core issue remained clear.
+            </td>
+
+			<td style="font-size: xx-small;">
+			Many saw it as a turning point for democratic participation. ||
+            It sparked conversations that would last for years. ||
+            Women began organizing more openly in the months ahead. ||
+            The outcome inspired future movements across the nation. ||
+            Change, though slow, was beginning to take root.
+            </td>
+
+            <td>
+                A youthful woman speaks calmly and clearly, balanced and neutral in tone.
+            </td>
+
+            <td>
+			A natural-sounding young female with normal pitch and normal volume discusses a passing hearing.  This speech takes place in a News and Politics setting, presenting the natural emotion evident throughout.
+            </td>
+		</tr>
+
+		<tr>
+			<td id="2775_160958_000029_000000">
+				So the merchant sat down as bold as you please, and made a very hearty supper, after which he again thought he would look for the master of the house.
+            </td>
+
+			<td style="font-size: xx-small;">
+			Whoa, imagine that! The merchant just sat down with a grin and a full plate! ||
+            Ooh, he was so bold, like a superhero showing up at a party! ||
+            He didn’t even wait—just plopped down and started eating like a king! ||
+            Bold move! He sat down like he owned the place already! ||
+            No wait—bold as a lion, he just claimed the seat with a big smile!
+            </td>
+
+			<td style="font-size: xx-small;">
+			Then he spotted the master hiding behind the curtain! ||
+            The master peeked out, eyes wide with surprise!	||
+            He whispered, 'You’re not supposed to be here!' in a hushed tone! ||
+            The merchant laughed, 'I’m just here to have fun!' and kept eating!	||
+            The house went silent—everyone watching the drama unfold!
+            </td>
+
+            <td>
+                Energetic, lively teenage girl telling a joyful story with excitement.
+            </td>
+			<td>
+			Sharing a story, a fast-talking teenage girl with a high pitch and normal volume sits down at the table and says.
+            </td>
+		</tr>
+
+
+	</tbody>
+</table>
+<p><br /></p>
+
+<h2 id="compare-with-baselines">Comparison of AutoRich-TTS and Baseline TTS Systems</h2>
+<p align="justify">We provide a range of audio samples to exemplify the differences between AutoRich-TTS and the baseline models (PromptTTS、ParlerTTS、VoxInstruct、CosyVoice) over multiple style attributes (Age、 Gender、 Pitch、 Speed、 Volume、 Emotion).</p>
+
+
+<p>
+<b>Input Text:</b> It was arranged neatly, and by its side flowed the clear, cool waters of Young's Branch, a tributary of the little Manassas River. He walked briskly, crossed the brook, stepping from stone to stone, and entered the grounds of the Invincibles.<br />
+<b>Style Prompt:</b> Exuding naturalness in an aged male voice with medium pitch and high volume, a speaker speaks at a suitable pace.<br />
+<b>Ground Truth:</b><audio controls="" id="8494_244443_000047_000002" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/269.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/269.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="269" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/269.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> I can promise you, too, some good singing.<br />
+<b>Style Prompt:</b> With a hint of urgency in her voice, a natural adult female with a normal pitch and low volume says, in a fast-paced manner.<br />
+<b>Ground Truth:</b><audio controls="" id="7754_108640_000005_000005" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/244.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/244.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="244" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/244.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> Of course, it was commonly known that Benda was being sought by Universities and corporations: I know personally of several tempting offers he had received.<br />
+<b>Style Prompt:</b> Reflecting a sense of envy, a young female with high pitch and volume artfully expresses,  She speaks at a normal speed with an air of unexpected surprise.<br />
+<b>Ground Truth:</b><audio controls="" id="3994_11512_000014_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/123.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/123.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="123" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/123.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> The subject matter has been carefully chosen, and the author has wisely refrained from giving advice with regard to treatment which can be satisfactorily directed only after careful study by a physician.<br />
+<b>Style Prompt:</b> Expressing natural emotions, a youthful female with high pitch and normal volume speaks rapidly.<br />
+<b>Ground Truth:</b><audio controls="" id="1195_37134_000006_000002" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/005.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/005.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="5" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/005.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> In civil commotions of this kind occurring in any of the ancient non-Protestant countries in Europe, it is always a question of the utmost moment which side the Church and the clergy espouse.<br />
+<b>Style Prompt:</b> In a serious tone, an old male with proper pitch and loud volume speaks slowly and expresses his thoughts.<br />
+<b>Ground Truth:</b><audio controls="" id="1226_141268_000010_000000" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/006.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/006.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="6" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/006.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> Princess Mary was silent.<br />
+<b>Style Prompt:</b> Reflecting on the silent Princess Mary, a teenage girl with low-pitched and low-volume voice spoke rapidly, expressing cautious emotions.<br />
+<b>Ground Truth:</b><audio controls="" id="4592_22178_000033_000003" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/139.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/139.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="139" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/139.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> That he died in 1788, without leaving any legitimate offspring, is a fact equally well known; as also that his brother Henry Stuart, Cardinal York, who died in 1807, was the last of his ill-fated race.<br />
+<b>Style Prompt:</b> With a sad tone, a low-pitched adult male speaks in a slow and slow pace.  he says in a low-pitched voice, indicating the passing of a beloved figure.<br />
+<b>Ground Truth:</b><audio controls="" id="5319_84357_000002_000001" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/158.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/158.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="158" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/158.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+
+<p>
+<b>Input Text:</b> The dangerous thing about it was that it said nothing and apparently did nothing.<br />
+<b>Style Prompt:</b> Speaking with disgust in an audiobook, a fast-paced teenager with normal pitch and normal volume addresses the topic of danger, stating with disapproval.<br />
+<b>Ground Truth:</b><audio controls="" id="1463_134465_000029_000009" onplay="pauseOthers(this);"><source src="./Audio/GroundTruth/012.wav" type="audio/mpeg" /></audio>
+</p>
+<table>
+    <tr>
+        <th> PromptTTS</th>
+        <th> ParlerTTS</th>
+        <th> VoxInstruct</th>
+        <th> CosyVoice</th>
+        <th> AutoRich-TTS(Ours)</th>
+    </tr>
+    <tr>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/PromptTTS/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/ParlerTTS/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/VoxInstruct/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/CosyVoice/012.wav" type="audio/mpeg" /></audio> </th>
+        <th> <audio controls="" id="12" onplay="pauseOthers(this);"><source src="./Audio/AutoRichTTS/012.wav" type="audio/mpeg" /></audio> </th>
+    </tr>
+</table>
+<p><br /></p>
+
+
+<h2 id="">Ablation Results in different settings of AutoRich-TTS</h2>
+
+<p>
+  We conduct thorough ablation experiments to validate the contributions of different settings of AutoRich-TTS.
+  Where X represents Input Text, 𝐷𝑐 and 𝐷𝑓 represent Coarse-grained and Fine-grained Style Descriptions respectively,
+  𝐶𝑒𝑥𝑡 represent Extrapolated Context, 𝑇𝑆 represent Speech Tokens. The details are as follows:
+</p>
+
+
+<p><ruby><strong>The original AutoRich-TTS </strong></ruby></p>
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Setting</th>
+			<th style="text-align: center">Text</th>
+			<th style="text-align: center">Fine-grained Style Description</th>
+            <th style="text-align: center">Speech</th>
+
+		</tr>
+	</thead>
+	<tbody>
+        <tr>
+			<td style="text-align: center">
+            <strong>Ab.0: Full AutoRich-TTS</strong>
+            <br># The complete system with all components enabled, including context extrapolation, style description enrichment. Serves as the topline reference.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+            </td>
+            <td>
+            A calm teenage girl with high pitch and normal volume, speaking at a fast pace, conveying her natural emotions.
+            </td>
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+</tbody>
+</table>
+<p><ruby><strong>Style Description Inference Chain</strong></ruby></p>
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Setting</th>
+			<th style="text-align: center">Text</th>
+			<!--th style="text-align: center">Style Prompt</th-->
+            <th style="text-align: center">Speech</th>
+		</tr>
+	</thead>
+	<tbody>
+
+        <tr>
+			<td style="text-align: center">
+            <strong> Ab.1: Qwen<sub>ext</sub> -w/o Dc </strong>
+            <br># without 𝐷𝑐 when  Qwen<sub>ext</sub> generates 𝐶𝑒𝑥𝑡.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-1.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+
+		<tr>
+			<td style="text-align: center">
+            <strong> Ab.2: Qwen<sub>enr</sub> -w/o Cext </strong>
+            <br># without 𝐶𝑒𝑥𝑡 when Qwen<sub>enr</sub> generates 𝐷𝑓.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-2.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		<tr>
+			<td style="text-align: center">
+            <strong> Ab.3: Qwen<sub>ext</sub> -w/o Dc & Qwen<sub>enr</sub> -w/o Cext </strong>
+            <br># Qwen<sub>ext</sub> directly generates 𝐶𝑒𝑥𝑡, then Qwen<sub>enr</sub> directly generates 𝐷𝑓.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-3.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		
+
+	</tbody>
+</table>
+<p><ruby><strong>Speech Synthesis with Different Input</strong></ruby></p>
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Setting</th>
+			<th style="text-align: center">Text</th>
+			<!--th style="text-align: center">Style Prompt</th-->
+            <th style="text-align: center">Speech</th>
+		</tr>
+	</thead>
+	<tbody>
+        <tr>
+			<td style="text-align: center">
+            <strong> Ab.4: AutoRich-TTS<sub>Dc</sub> </strong>
+            <br># replacement of 𝐷𝑓 by 𝐷𝑐 when AutoRich-TTS generates 𝑇𝑆.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-5.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+        <tr>
+			<td style="text-align: center">
+            <strong> Ab.5: AutoRich-TTS<sub>Dc</sub> -w/o Cext </strong>
+            <br># only X and 𝐷𝑐 when AutoRich-TTS generates 𝑇𝑆.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-6.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+		<tr>
+			<td style="text-align: center">
+            <strong> Ab.6: AutoRich-TTS<sub>Df</sub> -w/o Cext </strong>
+            <br># without 𝐶𝑒𝑥𝑡 when AutoRich-TTS generates 𝑇𝑆.
+            </td>
+			<td>
+			I know that; but I cannot be mewed up here in the old house and deprived of my afternoon ride.
+
+            </td>
+
+            <td style="text-align: center">
+            <audio controls="" style="width: 200px;"><source src="./Audio/EXP_ablation/sample-1/108-7.wav" type="audio/wav"></audio>
+            </td>
+		</tr>
+
+
+	</tbody>
+</table>
+
+
+
+
+<h2 id="">Impact of the Extrapolated Context Window Size</h2>
+
+<p>To evaluate the impact of extrapolated context window size on style controllability and expressiveness, we vary the number of surrounding sentences 𝐾 ∈ {1, 2, 3, 4, 5} during speech generation.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center">Text</th>
+            <th style="text-align: center">Context Window Size</th>
+            <th style="text-align: center">Fine-grained Description</th>
+            <th style="text-align: center">Speech</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+			He couldn't but agree with me, but there was that wrathful Oriental with his face as fixed as a Buddha.
+			</td>
+            <td style="text-align: center">
+                K=1
+            </td>
+            <td rowspan="5" style="text-align: center">
+               Speaking with urgency, a lively young girl with a sharp and fiery tone talks quickly. Speaking at a rapid pace, she brims with fierce energy.
+
+            </td>
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-1.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=2
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-2.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=3
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-3.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=4
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-4.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=5
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-1/009-5.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+
+    <tbody>
+        <tr>
+            <td rowspan="5" style="text-align: center">
+            Why is it called by such a horrid name, Uncle?
+
+			</td>
+            <td style="text-align: center">
+                K=1
+            </td>
+            <td rowspan="5" style="text-align: center">
+
+			   Speaking with curiosity, a high-pitched youth female with normal pitch and high volume asks. Speaking at a slow pace, she displays natural emotion.
+            </td>
+
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-1.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=2
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-2.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=3
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-3.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=4
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-4.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                K=5
+            </td>
+
+            <td style="text-align: center">
+                <audio controls="" style="width: 200px;"><source src="./Audio/EXP_context/sample-2/235-5.wav" type="audio/wav"></audio>
+            </td>
+        </tr>
+    </tbody>
+
+
+
+
+</table>
+
+
+
+    <!-- End of Speech Demo -->
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+
+
+    </main>
+</body>
+
+</html>
